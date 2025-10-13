@@ -1,14 +1,21 @@
 "use client"
-
-import { useState } from "react"
+import { fr } from "date-fns/locale"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Calendar as SC_Calandar } from "@/components/ui/calendar"
 import { Check, ChevronDown, Calendar, Facebook, Twitter, Linkedin } from "lucide-react"
 import Image from "next/image"
-
+import TimeSelectCards from "@/components/home/TimeSelectCards"
+import Link from "next/link"
 export default function LegalGeriePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [selectedDate, setSelectedDate] = useState<number | null>(null)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
+  const [selectTime, setSelectTime] = useState<string | null>(null)
+
+  useEffect(() => {
+    setSelectedDate(new Date())
+  }, [])
 
   const services = [
     "Droit de la famille",
@@ -87,267 +94,194 @@ export default function LegalGeriePage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="w-full max-w-[1100px] mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold">
-                LEGAL<span className="text-[#D4A574]">GERIE</span>
-              </h1>
-              <nav className="hidden md:flex items-center gap-6 text-sm">
-                <a href="#" className="hover:text-[#D4A574] transition-colors">
-                  Accueil
-                </a>
-                <a href="#" className="hover:text-[#D4A574] transition-colors flex items-center gap-1">
-                  Consultation <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#D4A574] transition-colors flex items-center gap-1">
-                  Actualités Législatives <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#D4A574] transition-colors">
-                  Avantages
-                </a>
-                <a href="#" className="hover:text-[#D4A574] transition-colors">
-                  Contact
-                </a>
-                <a href="#" className="hover:text-[#D4A574] transition-colors">
-                  FAQ
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button variant="outline" className="hidden sm:inline-flex bg-transparent">
-                Connexion
-              </Button>
-              <Button className="bg-[#D4A574] hover:bg-[#C49564] text-white">S'inscrire</Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      
 
       {/* Hero Section */}
       <section className="bg-white py-8 md:py-16 lg:py-24 relative overflow-hidden">
-  <div className="w-full max-w-[1100px] bg-black rounded-lg mx-auto px-4 sm:px-8 md:px-12 lg:px-24 relative z-10">
-    <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto py-8 md:py-0">
-      {/* Left Content */}
-      <div className="text-white text-center md:text-left">
-        <p className="text-[#C39A5C] text-sm sm:text-base font-medium tracking-wide mb-3 md:mb-4">
-          Votre conseiller juridique
-        </p>
-        <h1 className="text-2xl sm:text-3xl md:text-[36px] font-semibold mb-4 md:mb-6 leading-[110%]">
-          Accompagnement Juridiques en Algérie, Simple et Rapide
-        </h1>
-        <p className="text-white mb-6 md:mb-8 text-sm sm:text-base leading-relaxed md:leading-[19px]">
-          Posez votre question et recevez un premier avis fiable par des experts en droit algérien qui vous accompagneront, sans vous déplacer.
-        </p>
-        <Button className="bg-[#C39A5C] hover:bg-[#B38A4C] text-white px-4 sm:px-[18px] py-2 sm:py-[6px] rounded-md flex items-center gap-2 sm:gap-[10px] h-auto sm:h-8 mx-auto md:mx-0 text-sm sm:text-base">
-          <span className="font-medium">Consultation Gratuite</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-            <path d="M3.33334 8H12.6667" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M8 3.33334L12.6667 8.00001L8 12.6667" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </Button>
-      </div>
+        <div className="w-full max-w-[1100px] bg-black rounded-lg mx-auto px-4 sm:px-8 md:px-12 lg:px-24 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto py-8 md:py-0">
+            {/* Left Content */}
+            <div className="text-white text-center md:text-left">
+              <p className="text-[#C39A5C] text-sm sm:text-base font-medium tracking-wide mb-3 md:mb-4">
+                Votre conseiller juridique
+              </p>
+              <h1 className="text-2xl sm:text-3xl md:text-[36px] font-semibold mb-4 md:mb-6 leading-[110%]">
+                Accompagnement Juridiques en Algérie, Simple et Rapide
+              </h1>
+              <p className="text-white mb-6 md:mb-8 text-sm sm:text-base leading-relaxed md:leading-[19px]">
+                Posez votre question et recevez un premier avis fiable par des experts en droit algérien qui vous accompagneront, sans vous déplacer.
+              </p>
+              <Button className="bg-[#C39A5C] hover:bg-[#B38A4C] text-white px-4 sm:px-[18px] py-2 sm:py-[6px] rounded-md flex items-center gap-2 sm:gap-[10px] h-auto sm:h-8 mx-auto md:mx-0 text-sm sm:text-base">
+                <span className="font-medium">Consultation Gratuite</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
+                  <path d="M3.33334 8H12.6667" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M8 3.33334L12.6667 8.00001L8 12.6667" stroke="white" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Button>
+            </div>
 
-      {/* Right Content - Image */}
-      <div className="relative h-[300px] sm:h-[400px] md:h-[460px] flex items-center">
-        {/* Black background rectangle (70% width) - hidden on mobile */}
-        <div className="hidden md:block absolute inset-0 w-[70%] bg-black rounded-lg z-10"></div>
+            {/* Right Content - Image */}
+            <div className="relative h-[300px] sm:h-[400px] md:h-[460px] flex items-center">
+              {/* Black background rectangle (70% width) - hidden on mobile */}
+              <div className="hidden md:block absolute inset-0 w-[70%] bg-black rounded-lg z-10"></div>
 
-        <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[350px] md:w-[400px] h-[300px] sm:h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl z-20">
-  <Image
-    src="/image-hero.png"
-    alt="Lady Justice statue"
-    fill
-    className="object-cover object-center"
-    priority
-  />
-</div>
-      </div>
-    </div>
-  </div>
-</section>
+              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[350px] md:w-[400px] h-[300px] sm:h-[400px] md:h-[500px] rounded-lg overflow-hidden shadow-2xl z-20">
+                <Image
+                  src="/image-hero.png"
+                  alt="Lady Justice statue"
+                  fill
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section className="py-12 md:py-16 lg:py-24 bg-white">
         <div className="w-full max-w-[1100px] mx-auto px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-start">
-  {/* Colonne gauche */}
-  <div>
-    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-      Obtenez votre <span className="text-[#D4A574]">conseil</span> en quelques clics seulement
-    </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-6 md:mb-8">
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit de la famille
-        </span>
-      </div>
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit fiscal
-        </span>
-      </div>
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit des affaires
-        </span>
-      </div>
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit immobilier
-        </span>
-      </div>
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit pénal
-        </span>
-      </div>
-      <div className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
-          <path d="M20 6L9 17l-5-5"/>
-        </svg>
-        <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
-          Droit des étrangers
-        </span>
-      </div>
-    </div>
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 md:gap-8 items-start">
+            {/* Colonne gauche */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+                Obtenez votre <span className="text-[#D4A574]">conseil</span> en quelques clics seulement
+              </h2>
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 md:mb-8">
+                {services.map((service, index) => {
+                  return (<div key={index} className="flex items-center gap-[6px] px-3 sm:px-[14px] py-1 sm:py-[2px] border border-[#E5E4D7] rounded-[20px] bg-[#FDFCF5] w-fit h-auto sm:h-[20px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#392B15" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 sm:w-4 sm:h-4 flex-none">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    <span className="text-[#392B15] text-xs sm:text-[14px] font-normal">
+                      {service}
+                    </span>
+                  </div>)
+                })}
 
-    <button className="rounded transition-colors font-medium px-4 py-2 bg-[#D4A574] hover:bg-[#C49564] text-white w-full sm:w-64 text-sm sm:text-base">
-      Commencer maintenant
-    </button>
-  </div>
+              </div>
 
-  {/* Colonne droite */}
-  <div className="rounded-lg w-full max-w-full md:max-w-[448px]">
-    <p className="text-sm sm:text-[16px] text-gray-600 mb-3 md:mb-4">
-    Nous estimons que le conseil juridique doit être simple, accessible et transparent. Notre plateforme met en relation particuliers et entreprises avec des avocats de confiance, spécialisés dans le domaine qui vous concerne.    </p>
-    <p className="text-sm sm:text-[16px] text-gray-600 mb-3 md:mb-4">
-    Qu'il s'agisse de questions familiales, professionnelles ou commerciales, nous facilitons l'accès à une expertise adaptée pour vous orienter et éclairer vos décisions.    </p>
-    <p className="text-sm sm:text-[16px] text-gray-600">
-    Notre réseau d'experts couvre plusieurs spécialités afin de vous offrir des réponses précises, fiables et vous accompagner, quelle que soit votre situation.    </p>
-  </div>
-</div>
+              <button className="rounded transition-colors font-medium px-4 py-2 bg-[#D4A574] hover:bg-[#C49564] text-white w-full sm:w-64 text-sm sm:text-base">
+                Commencer maintenant
+              </button>
+            </div>
+
+            {/* Colonne droite */}
+            <div className="rounded-lg w-full max-w-full md:max-w-[448px]">
+              <p className="text-sm sm:text-[16px] text-gray-600 mb-3 md:mb-4">
+                Nous estimons que le conseil juridique doit être simple, accessible et transparent. Notre plateforme met en relation particuliers et entreprises avec des avocats de confiance, spécialisés dans le domaine qui vous concerne.    </p>
+              <p className="text-sm sm:text-[16px] text-gray-600 mb-3 md:mb-4">
+                Qu'il s'agisse de questions familiales, professionnelles ou commerciales, nous facilitons l'accès à une expertise adaptée pour vous orienter et éclairer vos décisions.    </p>
+              <p className="text-sm sm:text-[16px] text-gray-600">
+                Notre réseau d'experts couvre plusieurs spécialités afin de vous offrir des réponses précises, fiables et vous accompagner, quelle que soit votre situation.    </p>
+            </div>
+          </div>
 
         </div>
       </section>
 
       {/* Features Section */}
       <section className="py-12 md:py-16 lg:py-24 bg-[#F4EDE7]">
-      <div className="w-full max-w-[1100px] mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Image with corner decorations - wrapper allows corners to float outside */}
-          <div className="relative w-full max-w-[320px] sm:max-w-[406px] h-[400px] sm:h-[500px] md:h-[580px] mx-auto">
-            {/* Image container with rounded corners and shadow */}
-            <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg">
-              <Image
-                src="/feature-image.png"
-                alt="Professional consultation"
-                fill
-                className="object-cover"
-              />
+        <div className="w-full max-w-[1100px] mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Image with corner decorations - wrapper allows corners to float outside */}
+            <div className="relative w-full max-w-[320px] sm:max-w-[406px] h-[400px] sm:h-[500px] md:h-[580px] mx-auto">
+              {/* Image container with rounded corners and shadow */}
+              <div className="relative w-full h-full rounded-lg overflow-hidden">
+                <Image
+                  src="/feature-image.png"
+                  alt="Professional consultation"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Top-left corner decoration */}
+              <div className="absolute top-0 left-0 w-[35px] h-[35px] sm:w-[50px] sm:h-[50px] border-t-[10px] sm:border-t-[14px] border-l-[10px] sm:border-l-[14px] border-[#C39A5C] -translate-x-4 sm:-translate-x-6 -translate-y-4 sm:-translate-y-6"></div>
+
+              {/* Bottom-right corner decoration */}
+              <div className="absolute bottom-0 right-0 w-[35px] h-[35px] sm:w-[50px] sm:h-[50px] border-b-[10px] sm:border-b-[14px] border-r-[10px] sm:border-r-[14px] border-[#C39A5C] translate-x-4 sm:translate-x-6 translate-y-4 sm:translate-y-6"></div>
             </div>
 
-            {/* Top-left corner decoration */}
-            <div className="absolute top-0 left-0 w-[35px] h-[35px] sm:w-[50px] sm:h-[50px] border-t-[10px] sm:border-t-[14px] border-l-[10px] sm:border-l-[14px] border-[#C39A5C] -translate-x-4 sm:-translate-x-6 -translate-y-4 sm:-translate-y-6"></div>
+            {/* Text Content */}
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+                Votre <span className="text-[#D4A574]">tranquillité</span>
+                <br />
+                d'esprit, notre priorité
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 mb-6 md:mb-8">
+                Chez <span className="font-semibold">LEGALGERIE</span>, nous
+                comprenons que les questions juridiques peuvent être stressantes.
+                C'est pourquoi nous mettons tout en œuvre pour vous offrir un
+                service de qualité dans un cadre discret.
+              </p>
 
-            {/* Bottom-right corner decoration */}
-            <div className="absolute bottom-0 right-0 w-[35px] h-[35px] sm:w-[50px] sm:h-[50px] border-b-[10px] sm:border-b-[14px] border-r-[10px] sm:border-r-[14px] border-[#C39A5C] translate-x-4 sm:translate-x-6 translate-y-4 sm:translate-y-6"></div>
-          </div>
-
-          {/* Text Content */}
-          <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
-              Votre <span className="text-[#D4A574]">tranquillité</span>
-              <br />
-              d'esprit, notre priorité
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-6 md:mb-8">
-              Chez <span className="font-semibold">LEGALGERIE</span>, nous
-              comprenons que les questions juridiques peuvent être stressantes.
-              C'est pourquoi nous mettons tout en œuvre pour vous offrir un
-              service de qualité dans un cadre discret.
-            </p>
-
-            <div className="space-y-4 md:space-y-6">
-              {features.map((feature, index) => (
-                <div key={index} className="flex gap-3 md:gap-4 items-start">
-                  <div className="flex-shrink-0">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#D4A574] text-white flex items-center justify-center font-bold text-xs sm:text-sm">
-                      {feature.number}
+              <div className="space-y-4 md:space-y-6">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex gap-3 md:gap-4 items-start">
+                    <div className="flex-shrink-0">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#D4A574] text-white flex items-center justify-center font-bold text-xs sm:text-sm">
+                        {feature.number}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold mb-1 text-sm sm:text-base">{feature.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
                     </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold mb-1 text-sm sm:text-base">{feature.title}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Steps Section */}
-<section className="py-12 md:py-16 lg:py-24 bg-black text-white">
-  <div className="w-full max-w-[1100px] mx-auto px-4">
-    <div className="text-center mb-8 md:mb-12">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
-        <span className="text-[#D4A574]">3 étapes simples</span> pour
-        <br className="hidden sm:block" />
-        avancer votre dossier
-      </h2>
-      <p className="text-gray-400 text-sm sm:text-base px-4">
-        3 étapes simples pour vous accompagner et trouver le bon expert afin de faire avancer votre dossier sans stress.
-      </p>
-    </div>
-
-    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-      {steps.map((step, index) => (
-        <div key={index} className="relative h-full">
-          {/* Icon positioned at the top of the border */}
-          <div className="absolute -top-5 sm:-top-6 left-4 sm:left-6 bg-black px-2">
-            <Image
-              src={step.icon}
-              alt={step.title}
-              width={40}
-              height={40}
-              className="object-contain sm:w-12 sm:h-12"
-            />
+      <section className="py-12 md:py-16 lg:py-24 bg-black text-white">
+        <div className="w-full max-w-[1100px] mx-auto px-4">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+              <span className="text-[#D4A574]">3 étapes simples</span> pour
+              <br className="hidden sm:block" />
+              avancer votre dossier
+            </h2>
+            <p className="text-gray-400 text-sm sm:text-base px-4">
+              3 étapes simples pour vous accompagner et trouver le bon expert afin de faire avancer votre dossier sans stress.
+            </p>
           </div>
 
-          {/* Card */}
-          <Card className="bg-transparent border border-white pt-8 sm:pt-10 h-full">
-            <CardContent className="p-4 sm:p-6 h-full flex flex-col">
-              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white">
-                {step.title}
-              </h3>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </CardContent>
-          </Card>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {steps.map((step, index) => (
+              <div key={index} className="relative h-full">
+                {/* Icon positioned at the top of the border */}
+                <div className="absolute top-5 sm:-top-6 left-4 sm:left-6 bg-black px-2">
+                  <Image
+                    src={step.icon}
+                    alt={step.title}
+                    width={40}
+                    height={40}
+                    className="object-contain sm:w-12 sm:h-12"
+                  />
+                </div>
+
+                {/* Card */}
+                <Card className="bg-transparent border border-white pt-8 sm:pt-10 h-full">
+                  <CardContent className="py-6 h-full flex flex-col">
+                    <h3 className="text-lg sm:text-lg !leading-6 font-bold mb-2 sm:mb-3 text-white">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-12 md:py-16 lg:py-24 bg-white">
@@ -391,12 +325,12 @@ export default function LegalGeriePage() {
               <br className="hidden sm:block" />
               pour une consultation
             </h2>
-            <p className="text-center text-sm sm:text-base text-gray-600 mb-8 md:mb-12 px-4">
+            <p className="text-center text-sm sm:text-base text-gray-600 mb-8 md:mb-12 px-4 max-w-2xl mx-auto">
               Choisissez la date et l'heure qui vous conviennent le mieux. Nos experts sont disponibles pour vous
               accompagner dans votre démarche juridique.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {/* Calendar */}
               <Card className="shadow-lg">
                 <CardContent className="p-4 sm:p-6 md:p-8">
@@ -409,50 +343,17 @@ export default function LegalGeriePage() {
                     </h3>
                   </div>
 
-                  <div className="flex items-center justify-between mb-4 sm:mb-6 px-1 sm:px-2">
-                    <button className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 rotate-90" />
-                    </button>
-                    <p className="font-bold text-base sm:text-lg">Novembre 2024</p>
-                    <button className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 -rotate-90" />
-                    </button>
-                  </div>
+                  <SC_Calandar mode="single"
+                    selected={selectedDate}
+                    onSelect={setSelectedDate}
+                    onMonthChange={() => setSelectTime(null)}
+                    onDayClick={() => setSelectTime(null)}
+                    className="w-full"
+                    locale={fr}
+                    disabled={{ before: new Date() }}
+                    startMonth={new Date()}
+                  />
 
-                  <div className="grid grid-cols-7 gap-0.5 sm:gap-1 text-center text-xs sm:text-sm mb-2">
-                    {["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"].map((day) => (
-                      <div key={day} className="font-semibold text-gray-600 py-2 sm:py-3">
-                        {day}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="grid grid-cols-7 gap-0.5 sm:gap-1 text-center text-xs sm:text-sm">
-                    {[...Array(30)].map((_, i) => {
-                      const day = i + 1
-                      const isToday = day === 15
-                      const isPast = day < 10
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => setSelectedDate(day)}
-                          disabled={isPast}
-                          className={`
-                            py-2 sm:py-3 rounded-lg font-medium transition-all duration-200
-                            ${isPast ? "text-gray-300 cursor-not-allowed" : ""}
-                            ${selectedDate === day
-                              ? "bg-[#D4A574] text-white shadow-md scale-105"
-                              : isPast
-                              ? ""
-                              : "hover:bg-[#D4A574]/10 hover:scale-105"}
-                            ${isToday && selectedDate !== day ? "ring-1 sm:ring-2 ring-[#D4A574]/30" : ""}
-                          `}
-                        >
-                          {day}
-                        </button>
-                      )
-                    })}
-                  </div>
 
                   <div className="mt-4 sm:mt-6 p-2 sm:p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-start gap-2">
                     <div className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 flex-shrink-0 mt-0.5">
@@ -468,7 +369,7 @@ export default function LegalGeriePage() {
               </Card>
 
               {/* Time Slots */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg col-span-2">
                 <CardContent className="p-4 sm:p-6 md:p-8">
                   <h3 className="text-base sm:text-lg font-bold mb-2 flex items-center gap-2">
                     <div className="p-1.5 sm:p-2 bg-[#D4A574]/10 rounded-lg">
@@ -481,9 +382,19 @@ export default function LegalGeriePage() {
                   {selectedDate ? (
                     <>
                       <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
-                        Créneaux disponibles pour le {selectedDate} novembre
+                        Créneaux disponibles pour le {selectedDate.toLocaleDateString('fr-FR', {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
                       </p>
+                      <div className="flex w-full my-8 gap-4">
+                        <TimeSelectCards colors={{ bgColor: 'bg-[#EAECFA]', textColor: 'text-[#1F2E8C]' }} text={{ mainText: '12', subtext: "Créneau Disponible" }} />
+                        <TimeSelectCards colors={{ bgColor: 'bg-[#EAFBF1]', textColor: 'text-[#1F8C4B]' }} text={{ mainText: '30min', subtext: "Durée consultation" }} />
+                        <TimeSelectCards colors={{ bgColor: 'bg-[#FBF5EA]', textColor: 'text-slate-400' }} text={{ mainText: '30', subtext: "Confirmation immédiate" }} />
 
+                      </div>
                       <div className="space-y-4 sm:space-y-6">
                         <div>
                           <div className="flex items-center gap-2 mb-2 sm:mb-3">
@@ -496,9 +407,11 @@ export default function LegalGeriePage() {
                             {timeSlots.slice(0, 6).map((time) => (
                               <Button
                                 key={time}
-                                variant="outline"
+                                variant={time == selectTime ? "default" : "outline"}
                                 size="sm"
                                 className="text-xs sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8 sm:h-9"
+                                onClick={() => setSelectTime(time)}
+                                aria-pressed={selectTime === time}
                               >
                                 {time}
                               </Button>
@@ -517,32 +430,23 @@ export default function LegalGeriePage() {
                             {timeSlots.slice(6).map((time) => (
                               <Button
                                 key={time}
-                                variant="outline"
+                                variant={time == selectTime ? "default" : "outline"}
                                 size="sm"
                                 className="text-xs sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8 sm:h-9"
+                                onClick={() => setSelectTime(time)}
+                                aria-pressed={selectTime === time}
                               >
                                 {time}
                               </Button>
                             ))}
                           </div>
                         </div>
+                        <Button disabled={!selectTime} className="bg-[#D4A574] hover:bg-[#C49564] text-white px-4 py-2 rounded-md text-sm sm:text-base" >Validez votre créneau</Button>
+                        <p>Notre système de réservation est conçu pour être simple est intuitif, Si vous rencontrer des difficulté n’hésitez pas a <Link href="contact" className="text-[#D4A574]">nous contacter.</Link></p>
                       </div>
 
-                      <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                        <div className="flex items-start gap-2 sm:gap-3">
-                          <div className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-amber-600 mt-0.5">
-                            <svg fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                          <div>
-                            <p className="text-xs sm:text-sm font-semibold text-amber-900 mb-1">Durée: 30 minutes</p>
-                            <p className="text-[10px] sm:text-xs text-amber-800">
-                              Un lien de visioconférence vous sera envoyé par email après confirmation de votre réservation.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+
+
                     </>
                   ) : (
                     <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center">
