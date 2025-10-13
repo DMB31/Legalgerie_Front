@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { ChevronDown, Facebook, Twitter, Linkedin } from "lucide-react"
 
 export default function FAQPage() {
@@ -74,47 +73,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="w-full max-w-[1100px] mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold">
-                LEGAL<span className="text-[#C9A05F]">GERIE</span>
-              </h1>
-              <nav className="hidden md:flex items-center gap-6 text-sm">
-                <a href="/" className="hover:text-[#C9A05F] transition-colors">
-                  Accueil
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors flex items-center gap-1">
-                  Consultation <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors flex items-center gap-1">
-                  Actualités Législatives <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors">
-                  Auxiliaires
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors">
-                  Contact
-                </a>
-                <a href="/faq" className="hover:text-[#C9A05F] transition-colors">
-                  FAQ
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                className="hidden sm:inline-flex border-[#C9A05F] text-[#C9A05F] hover:bg-[#C9A05F] hover:text-white bg-transparent"
-              >
-                Connexion
-              </Button>
-              <Button className="bg-[#C9A05F] hover:bg-[#B89050] text-white">S'inscrire</Button>
-            </div>
-          </div>
-        </div>
-      </header>
+  
 
       {/* Hero Section */}
       <section className="py-16 md:py-20 bg-white">
@@ -180,70 +139,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-black text-white py-12">
-        <div className="w-full max-w-[1100px] mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">
-                LEGAL<span className="text-[#C9A05F]">GERIE</span>
-              </h3>
-              <p className="text-gray-400 text-sm">
-                Important : pas de section d'inscription pour avocat dans ce site public
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4">Accueil</h4>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-[#C9A05F] transition-colors">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-[#C9A05F] transition-colors">
-                    Motion légal
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4">Contactez nous sur :</h4>
-              <p className="text-sm text-gray-400">team@legalfacile.dz</p>
-              <p className="text-sm text-gray-400 mt-2">+ 33 12789877 (Lun-Ven 9h-18h)</p>
-            </div>
-
-            <div>
-              <div className="flex gap-3">
-                <a
-                  href="#"
-                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-[#C9A05F] transition-colors"
-                >
-                  <Facebook className="w-4 h-4 text-black" />
-                </a>
-                <a
-                  href="#"
-                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-[#C9A05F] transition-colors"
-                >
-                  <Twitter className="w-4 h-4 text-black" />
-                </a>
-                <a
-                  href="#"
-                  className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-[#C9A05F] transition-colors"
-                >
-                  <Linkedin className="w-4 h-4 text-black" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
-            <p>Copyright © 2025 LEGALGERIE | Tous les droits réservés</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

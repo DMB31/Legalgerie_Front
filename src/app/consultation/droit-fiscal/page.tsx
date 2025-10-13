@@ -1,13 +1,10 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
 
       {/* Hero Section */}
       <section className="relative bg-black text-white py-24 md:py-32">
@@ -17,17 +14,15 @@ export default function Home() {
 
         <div className="w-full max-w-[1100px] mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <p className="text-sm text-gray-300 mb-4">Droit de la famille</p>
+            <p className="text-sm text-gray-300 mb-4">Droit fiscal</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Les <span className="text-primary">affaires familiales</span> touchent à ce qu'il y a de plus personnel
+              <span className="text-primary">La fiscalité</span>un domaine complexe et en constante évolution
             </h1>
             <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-              La vie de couple, les enfants, le patrimoine. Dans ces moments parfois délicats, il est essentiel d'être
-              accompagné par un spécialiste compétent et à l'écoute.
+            Que vous soyez un particulier ou une entreprise, la fiscalité occupe une place centrale dans la gestion de votre patrimoine et de vos activités.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-              Nos experts spécialisés en droit de la famille vous conseillent, vous orientent et accompagnent vos
-              dossiers avec sérieux et humanité.
+            LEGALGERIE vous conseille, anticipe les risques et intervient dans toutes vos relations avec l’administration fiscale.
             </p>
           </div>
         </div>
@@ -40,8 +35,8 @@ export default function Home() {
       {/* Image */}
       <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
         <Image
-          src="/DroitDeLaFamille.png"
-          alt="Criminal law consultation"
+          src="/DroitFiscal.png"
+          alt="DroitFiscal"
           width={397}
           height={596}
           className="w-full h-full object-cover"
@@ -53,10 +48,10 @@ export default function Home() {
         {/* Header */}
         <div className="mb-[42px]">
           <h2 className="text-[40px] font-semibold leading-[110%] mb-6">
-            Quand faire appel à un avocat en <span className="text-primary">droit de la famille</span> ?
+            Quand faire appel à un avocat en <span className="text-primary">droit fiscal</span> ?
           </h2>
           <p className="text-base font-normal leading-5">
-            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit de la famille :
+            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit fiscal :
           </p>
         </div>
 
@@ -67,9 +62,11 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Divorce ou séparation              </h3>
+                Garde à vue et enquête
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              procédure amiable ou contentieuse, partage des biens.              </p>
+                assistance dès les premières heures pour garantir vos droits.
+              </p>
             </div>
           </div>
 
@@ -78,11 +75,9 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-                Comparution Correctionnel
-              </h3>
+              Déclarations fiscales              </h3>
               <p className="text-base font-normal leading-[130%]">
-                défense lors des auditions, confrontations et audiences devant le tribunal correctionnel.
-              </p>
+              procédure amiable ou contentieuse, partage des biens.              </p>
             </div>
           </div>
 
@@ -91,7 +86,7 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Garde des enfants              </h3>
+              Contrôles et contentieux fiscaux              </h3>
               <p className="text-base font-normal leading-[130%]">
               organisation de la résidence, médiation entre parents.              </p>
             </div>
@@ -102,7 +97,7 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Adoption et filiation              </h3>
+              Optimisation fiscale              </h3>
               <p className="text-base font-normal leading-[130%]">
               démarches administratives et juridiques complexes.              </p>
             </div>
@@ -113,20 +108,35 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Successions et héritages              </h3>
+              Fiscalité du patrimoine              </h3>
               <p className="text-base font-normal leading-[130%]">
               règlement des litiges entre héritiers, partage du patrimoine.              </p>
             </div>
           </div>
 
+
+
+          {/* Casier judiciaire et exécution des peines */}
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Fiscalité internationale             </h3>
+              <p className="text-base font-normal leading-[130%]">
+              fixation ou révision du montant de la pension alimentaire .            </p>
+            </div>
+          </div>
+
+
+          
           {/* Infractions économiques et financières */}
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Pension alimentaire              </h3>
+              Fiscalité des entreprises              </h3>
               <p className="text-base font-normal leading-[130%]">
-              fixation ou révision du montant de la pension alimentaire .              </p>
+              choix du régime fiscal, restructuration, opérations de fusion et acquisition.              </p>
             </div>
           </div>
         </div>
@@ -208,7 +218,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

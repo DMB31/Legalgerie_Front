@@ -24,47 +24,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="w-full max-w-[1100px] mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <h1 className="text-2xl font-bold">
-                LEGAL<span className="text-[#C9A05F]">GERIE</span>
-              </h1>
-              <nav className="hidden md:flex items-center gap-6 text-sm">
-                <a href="/" className="hover:text-[#C9A05F] transition-colors">
-                  Accueil
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors flex items-center gap-1">
-                  Consultation <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors flex items-center gap-1">
-                  Actualités Législatives <ChevronDown className="w-4 h-4" />
-                </a>
-                <a href="#" className="hover:text-[#C9A05F] transition-colors">
-                  Auxiliaires
-                </a>
-                <a href="/contact" className="hover:text-[#C9A05F] transition-colors">
-                  Contact
-                </a>
-                <a href="/faq" className="hover:text-[#C9A05F] transition-colors">
-                  FAQ
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                className="hidden sm:inline-flex border-[#C9A05F] text-[#C9A05F] hover:bg-[#C9A05F] hover:text-white bg-transparent"
-              >
-                Connexion
-              </Button>
-              <Button className="bg-[#C9A05F] hover:bg-[#B89050] text-white">S'inscrire</Button>
-            </div>
-          </div>
-        </div>
-      </header>
+
 
       {/* Hero Section */}
       <section className="py-16 md:py-20 bg-white">

@@ -1,13 +1,12 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
+
 
       {/* Hero Section */}
       <section className="relative bg-black text-white py-24 md:py-32">
@@ -17,16 +16,14 @@ export default function Home() {
 
         <div className="w-full max-w-[1100px] mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <p className="text-sm text-gray-300 mb-4">Droit international privé</p>
+            <p className="text-sm text-gray-300 mb-4">Droit administratif</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Le droit des étrangers règle le statut des non-nationaux.
-            </h1>
+              Le <span className="text-primary">Droit administratif</span> égit les relations entre l’administration et les citoyens.            </h1>
             <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-            Mariage mixte, nationalité, titre de séjour ou litige international : ces situations sont souvent complexes et délicates. Un accompagnement juridique spécialisé est essentiel pour faire valoir vos droits dans un contexte transfrontalier.
-
+            Face à l’administration, les enjeux peuvent être lourds : décisions injustifiées, abus de pouvoir, litiges liés à la fonction publique ou à l’urbanisme.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-            Nos avocats vous conseillent dans toutes vos démarches liées au droit des étrangers et aux affaires internationales privées, avec rigueur, confidentialité et efficacité.
+            Nos avocats spécialisés en droit administratif vous proposent accompagnement juridique à chaque étape de vos démarches ou contentieux.
             </p>
           </div>
         </div>
@@ -39,8 +36,8 @@ export default function Home() {
       {/* Image */}
       <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
         <Image
-          src="/DroitInternational.png"
-          alt="DroitInternational"
+          src="/DroitAdministratif.png"
+          alt="DroitAdministratif"
           width={397}
           height={596}
           className="w-full h-full object-cover"
@@ -52,10 +49,10 @@ export default function Home() {
         {/* Header */}
         <div className="mb-[42px]">
           <h2 className="text-[40px] font-semibold leading-[110%] mb-6">
-            Quand faire appel à un avocat en <span className="text-primary">droit international privé</span> ?
+            Quand faire appel à un avocat en <span className="text-primary">droit Administratif</span> ?
           </h2>
           <p className="text-base font-normal leading-5">
-            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit international privé :
+            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit admnistratif :
           </p>
         </div>
 
@@ -66,42 +63,22 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Carte de résidence et régularisation              </h3>
+              Recours contre une décision administrative              </h3>
               <p className="text-base font-normal leading-[130%]">
-              demande ou renouvellement de carte de séjour, recours en cas de refus ou de retrait.              </p>
+              Contestation d’un refus, d’une sanction, d’un retrait d’autorisation, etc.              </p>
             </div>
           </div>
 
-          {/* Comparution Correctionnel */}
-          <div className="flex gap-4">
-            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
-            <div>
-              <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Reconnaissance des décisions étrangères              </h3>
-              <p className="text-base font-normal leading-[130%]">
-              exequatur d’un jugement étranger (divorce, dette, etc.)              </p>
-            </div>
-          </div>
-
-          {/* Crimes et délits */}
-          <div className="flex gap-4">
-            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
-            <div>
-              <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Droit de la famille international              </h3>
-              <p className="text-base font-normal leading-[130%]">
-              garde d’enfants, pensions alimentaires.              </p>
-            </div>
-          </div>
+          
 
           {/* Victimes d'infractions */}
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Nationalité algérienne ou étrangère              </h3>
+              Litiges avec l’administration              </h3>
               <p className="text-base font-normal leading-[130%]">
-              acquisition, perte, double nationalité, naturalisation.              </p>
+              Relations conflictuelles avec une mairie, une wilaya, une direction ou un ministère.              </p>
             </div>
           </div>
 
@@ -110,22 +87,59 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Contrats et litiges transfrontaliers              </h3>
+              Fonction publique              </h3>
               <p className="text-base font-normal leading-[130%]">
-              commerce international, responsabilité contractuelle ou civile avec un élément étranger.              </p>
+              Contentieux liés aux nominations, sanctions disciplinaires, suspensions ou révocations.              </p>
             </div>
           </div>
 
-          {/* Infractions économiques et financières */}
+
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Mariage et divorce internationaux              </h3>
+              Expropriation pour cause d’utilité publique              </h3>
               <p className="text-base font-normal leading-[130%]">
-              mariage mixte, reconnaissance d’un divorce étranger, conflits de lois entre États.              </p>
+              Contestation de la décision, indemnisation insuffisante.            </p>
             </div>
           </div>
+
+
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Urbanisme et permis de construire          </h3>
+              <p className="text-base font-normal leading-[130%]">
+              Recours contre un refus de permis, autorisation illégale délivrée à un tiers, etc.              </p>
+            </div>
+          </div>
+
+
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Responsabilité de l’État ou d’une collectivité            </h3>
+              <p className="text-base font-normal leading-[130%]">
+              Dommages causés par une décision ou une négligence administrative.            </p>
+            </div>
+          </div>
+
+
+
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Concours publics et appels d’offres             </h3>
+              <p className="text-base font-normal leading-[130%]">
+              irrégularités dans les procédures ou résultats.              </p>
+            </div>
+          </div>
+
+
+        
         </div>
       </div>
     </div>
@@ -205,7 +219,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

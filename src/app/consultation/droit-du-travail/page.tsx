@@ -1,13 +1,11 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
 
       {/* Hero Section */}
       <section className="relative bg-black text-white py-24 md:py-32">
@@ -17,14 +15,15 @@ export default function Home() {
 
         <div className="w-full max-w-[1100px] mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <p className="text-sm text-gray-300 mb-4">Droit administratif</p>
+            <p className="text-sm text-gray-300 mb-4">Droit du travail</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Le <span className="text-primary">Droit administratif</span> égit les relations entre l’administration et les citoyens.            </h1>
+            <span className="text-primary">Travailler en confiance</span> c'est aussi connaitre ses droits
+            </h1>
             <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-            Face à l’administration, les enjeux peuvent être lourds : décisions injustifiées, abus de pouvoir, litiges liés à la fonction publique ou à l’urbanisme.
+            La relation entre employeur et salarié repose sur des droits et obligations réciproques. Lorsqu’un conflit survient, ou lorsqu’il s’agit de sécuriser un contrat ou une procédure, il est essentiel d’être accompagné par un avocat spécialisé en droit du travail.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-            Nos avocats spécialisés en droit administratif vous proposent accompagnement juridique à chaque étape de vos démarches ou contentieux.
+            Chez LEGALGERIE, nos experts vous assistent dans toutes les étapes de la relation professionnelle, que vous soyez salarié, employeur ou représentant du personnel.
             </p>
           </div>
         </div>
@@ -37,8 +36,8 @@ export default function Home() {
       {/* Image */}
       <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
         <Image
-          src="/DroitAdministratif.png"
-          alt="DroitAdministratif"
+          src="/DroitDuTravail.png"
+          alt="DroitDuTravail"
           width={397}
           height={596}
           className="w-full h-full object-cover"
@@ -50,10 +49,10 @@ export default function Home() {
         {/* Header */}
         <div className="mb-[42px]">
           <h2 className="text-[40px] font-semibold leading-[110%] mb-6">
-            Quand faire appel à un avocat en <span className="text-primary">droit Administratif</span> ?
+            Quand faire appel à un avocat en <span className="text-primary">droit du travail</span> ?
           </h2>
           <p className="text-base font-normal leading-5">
-            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit admnistratif :
+            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit du travail :
           </p>
         </div>
 
@@ -64,22 +63,44 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Recours contre une décision administrative              </h3>
+                Garde à vue et enquête
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              Contestation d’un refus, d’une sanction, d’un retrait d’autorisation, etc.              </p>
+                assistance dès les premières heures pour garantir vos droits.
+              </p>
             </div>
           </div>
 
-          
+          {/* Comparution Correctionnel */}
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Contrats de travail              </h3>
+              <p className="text-base font-normal leading-[130%]">
+              rédaction, relecture ou contestation de clauses abusives.              </p>
+            </div>
+          </div>
+
+          {/* Crimes et délits */}
+          <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Licenciement et rupture de contrat              </h3>
+              <p className="text-base font-normal leading-[130%]">
+              licenciement abusif, démission, mise à pied, fin de contrat à durée déterminée.              </p>
+            </div>
+          </div>
 
           {/* Victimes d'infractions */}
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Litiges avec l’administration              </h3>
+              Conflits au travail              </h3>
               <p className="text-base font-normal leading-[130%]">
-              Relations conflictuelles avec une mairie, une wilaya, une direction ou un ministère.              </p>
+              harcèlement moral ou sexuel, discrimination, non-paiement des salaires.              </p>
             </div>
           </div>
 
@@ -88,59 +109,37 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Fonction publique              </h3>
+              Durée du travail et congés              </h3>
               <p className="text-base font-normal leading-[130%]">
-              Contentieux liés aux nominations, sanctions disciplinaires, suspensions ou révocations.              </p>
+              heures supplémentaires, repos hebdomadaire non respecté, congés payés.              </p>
             </div>
           </div>
 
+           {/* Casier judiciaire et exécution des peines */}
+           <div className="flex gap-4">
+            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
+            <div>
+              <h3 className="text-xl font-semibold leading-[26px] mb-2">
+              Représentation des salariés             </h3>
+              <p className="text-base font-normal leading-[130%]">
+              assistance devant la section sociale du tribunal compétent.             </p>
+            </div>
+          </div>
 
+         
+
+          {/* Infractions économiques et financières */}
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Expropriation pour cause d’utilité publique              </h3>
+              Accidents du travail et maladies professionnelles
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              Contestation de la décision, indemnisation insuffisante.            </p>
+              Indemnisation et démarches auprès de la Caisse Nationale des Assurances Sociales (CNAS).
+              </p>
             </div>
           </div>
-
-
-          <div className="flex gap-4">
-            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
-            <div>
-              <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Urbanisme et permis de construire          </h3>
-              <p className="text-base font-normal leading-[130%]">
-              Recours contre un refus de permis, autorisation illégale délivrée à un tiers, etc.              </p>
-            </div>
-          </div>
-
-
-          <div className="flex gap-4">
-            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
-            <div>
-              <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Responsabilité de l’État ou d’une collectivité            </h3>
-              <p className="text-base font-normal leading-[130%]">
-              Dommages causés par une décision ou une négligence administrative.            </p>
-            </div>
-          </div>
-
-
-
-          <div className="flex gap-4">
-            <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
-            <div>
-              <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Concours publics et appels d’offres             </h3>
-              <p className="text-base font-normal leading-[130%]">
-              irrégularités dans les procédures ou résultats.              </p>
-            </div>
-          </div>
-
-
-        
         </div>
       </div>
     </div>
@@ -220,7 +219,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

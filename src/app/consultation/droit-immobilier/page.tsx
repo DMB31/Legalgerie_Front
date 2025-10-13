@@ -1,14 +1,10 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
-
       {/* Hero Section */}
       <section className="relative bg-black text-white py-24 md:py-32">
         <div className="absolute inset-0 opacity-40">
@@ -17,15 +13,14 @@ export default function Home() {
 
         <div className="w-full max-w-[1100px] mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <p className="text-sm text-gray-300 mb-4">Droit du travail</p>
+            <p className="text-sm text-gray-300 mb-4">Droit immobilier</p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="text-primary">Travailler en confiance</span> c'est aussi connaitre ses droits
-            </h1>
+            L’immobilier représente un levier essentiel dans les projets à forte valeur.            </h1>
             <p className="text-lg text-gray-300 mb-4 leading-relaxed">
-            La relation entre employeur et salarié repose sur des droits et obligations réciproques. Lorsqu’un conflit survient, ou lorsqu’il s’agit de sécuriser un contrat ou une procédure, il est essentiel d’être accompagné par un avocat spécialisé en droit du travail.
+            L’acquisition, la vente, la location ou la gestion d’un bien immobilier implique des enjeux financiers et personnels considérables. Des conflits ou difficultés peuvent survenir et nécessiter l’intervention d’un professionnel du droit spécialisé.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed">
-            Chez LEGALGERIE, nos experts vous assistent dans toutes les étapes de la relation professionnelle, que vous soyez salarié, employeur ou représentant du personnel.
+            Nos spécialistes en droit immobilier vous conseillent, vous assistent et défendent vos intérêts, que vous soyez propriétaire, locataire, investisseur ou professionnel de l’immobilier.
             </p>
           </div>
         </div>
@@ -38,8 +33,8 @@ export default function Home() {
       {/* Image */}
       <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
         <Image
-          src="/DroitDuTravail.png"
-          alt="DroitDuTravail"
+          src="/DroitImmobilier.png"
+          alt="DroitImmobilier"
           width={397}
           height={596}
           className="w-full h-full object-cover"
@@ -51,47 +46,50 @@ export default function Home() {
         {/* Header */}
         <div className="mb-[42px]">
           <h2 className="text-[40px] font-semibold leading-[110%] mb-6">
-            Quand faire appel à un avocat en <span className="text-primary">droit du travail</span> ?
+            Quand faire appel à un avocat en <span className="text-primary">droit immobilier</span> ?
           </h2>
           <p className="text-base font-normal leading-5">
-            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit du travail :
+            Les situations suivantes nécessitent souvent un accompagnement juridique par un experts en droit immobilier:
           </p>
         </div>
 
         {/* Services List */}
         <div className="flex flex-col gap-[29px]">
-          {/* Garde à vue et enquête */}
+          
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-                Garde à vue et enquête
+              Achat ou vente de biens
               </h3>
               <p className="text-base font-normal leading-[130%]">
-                assistance dès les premières heures pour garantir vos droits.
+              Sécurisation des transactions, gestion des litiges (ventes, baux ou avant-contrats).
               </p>
             </div>
           </div>
 
-          {/* Comparution Correctionnel */}
+          
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Contrats de travail              </h3>
+                Comparution Correctionnel
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              rédaction, relecture ou contestation de clauses abusives.              </p>
+                défense lors des auditions, confrontations et audiences devant le tribunal correctionnel.
+              </p>
             </div>
           </div>
 
-          {/* Crimes et délits */}
-          <div className="flex gap-4">
+                    <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Licenciement et rupture de contrat              </h3>
+              Baux d’habitation et commerciaux
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              licenciement abusif, démission, mise à pied, fin de contrat à durée déterminée.              </p>
+              Rédaction, révision ou résolution des litiges entre locateur et preneur.
+              </p>
             </div>
           </div>
 
@@ -100,9 +98,11 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-start h-[26px]"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Conflits au travail              </h3>
+              Copropriété
+              </h3>
               <p className="text-base font-normal leading-[130%]">
-              harcèlement moral ou sexuel, discrimination, non-paiement des salaires.              </p>
+              Gestion des conflits entre copropriétaires, contestation d’assemblées générales, charges de copropriété.
+              </p>
             </div>
           </div>
 
@@ -111,35 +111,36 @@ export default function Home() {
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Durée du travail et congés              </h3>
+              Construction et travaux              </h3>
               <p className="text-base font-normal leading-[130%]">
-              heures supplémentaires, repos hebdomadaire non respecté, congés payés.              </p>
+              Malfaçons, retard de livraison, non-conformité aux contrats de construction.
+              </p>
             </div>
           </div>
 
-           {/* Casier judiciaire et exécution des peines */}
-           <div className="flex gap-4">
+
+
+          {/* Casier judiciaire et exécution des peines */}
+          <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Représentation des salariés             </h3>
+              Expulsion et impayés          </h3>
               <p className="text-base font-normal leading-[130%]">
-              assistance devant la section sociale du tribunal compétent.             </p>
+              Procédures liées au non-paiement des loyers ou à l’occupation illégale.              </p>
             </div>
           </div>
 
-         
+
 
           {/* Infractions économiques et financières */}
           <div className="flex gap-4">
             <div className="w-[3px] bg-[#C39A5C] flex-shrink-0 self-stretch"></div>
             <div>
               <h3 className="text-xl font-semibold leading-[26px] mb-2">
-              Accidents du travail et maladies professionnelles
-              </h3>
+              Expropriation et servitudes              </h3>
               <p className="text-base font-normal leading-[130%]">
-              Indemnisation et démarches auprès de la Caisse Nationale des Assurances Sociales (CNAS).
-              </p>
+              Défense de vos droits face à l’administration ou aux voisins.              </p>
             </div>
           </div>
         </div>
@@ -220,8 +221,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }
