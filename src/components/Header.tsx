@@ -1,8 +1,33 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { HeaderDropDown } from "./HeaderDropDown"
 
 export default function Header() {
+  const Consultation = {
+    label: "Consultation",
+    sublinks: [
+      { href:'string', label:'Droit administratif'},
+      { href:'string', label:'Droit pénal'},
+      { href:'string', label:'Droit immobilier'},
+      { href:'string', label:'Droit de la famille'},
+      { href:'string', label:'Droit des affaires'},
+      { href:'string', label:'Droit du travail'},
+      { href:'string', label:'Droit fiscal'},
+      { href:'string', label:'Droit des étrangers'},
+    ]
+  }
+  const ActualitesLegislatives = {
+    label: "Actualités Législatives",
+    sublinks: [
+      { href:'string', label:'Blog'},
+      { href:'string', label:'Zoom sur l’affaire'},
+    ]
+  }
+
+
+
   return (
+    <>
     <header className="bg-white border-b border-border sticky top-0 z-50 max-w-[1080px] mx-auto">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -15,18 +40,8 @@ export default function Header() {
             <Link href="/" className="text-sm hover:text-primary transition-colors">
               Accueil
             </Link>
-            <button className="text-sm hover:text-primary transition-colors flex items-center gap-1">
-              Consultation
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <button className="text-sm hover:text-primary transition-colors flex items-center gap-1">
-              Actualités Législatives
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+            <HeaderDropDown label={Consultation.label} sublinks={Consultation.sublinks}/>
+            <HeaderDropDown label={ActualitesLegislatives.label} sublinks={ActualitesLegislatives.sublinks}/>
             <Link href="/auxiliaires" className="text-sm hover:text-primary transition-colors">
               Auxiliaires
             </Link>
@@ -50,5 +65,6 @@ export default function Header() {
         </div>
       </div>
     </header>
+    </>
   )
 }
