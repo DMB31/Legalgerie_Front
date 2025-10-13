@@ -1,10 +1,13 @@
 import "./globals.css";
 import { Montserrat, Lato } from 'next/font/google';
 import Header from "@/components/Header";
+import Footer from "@/components/Footer"
+
 export const metadata = {
   title: "My Website",
   description: "This is my homepage built with Next.js",
 };
+
 
 const montserrat = Montserrat({
   subsets: ['latin'], 
@@ -32,7 +35,7 @@ export default function RootLayout({
        
         {children}
         
-        
+        <Footer/>
         </body>
     </html>
   );
