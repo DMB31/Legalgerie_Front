@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
-import ArticleCards from "@/components/ArticleCards";
+import ArticleCards from "@/components/blog/ArticleCards";
 import useFetch from "@/utils/useFetch";
-import Booking from "@/components/Booking";
-import Faq from "@/components/Faq";
+import Booking from "@/components/home/Booking";
+import Faq from "@/components/global/Faq";
 
 const fetchRecentArticles = async () => {
   const data = await useFetch("http://localhost:3001/api/posts");

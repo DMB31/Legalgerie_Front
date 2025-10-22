@@ -3,7 +3,7 @@ import { Scale, Users, UserCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFetchBySlug } from "@/utils/useFetchBySlug";
 import { env } from "process";
-import ServicesList from "@/components/ServicesList";
+import ServicesList from "@/components/global/ServicesList";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import RichTextConverter from "@/components/RichTextConverter";
+import RichTextConverter from "@/components/blog/RichTextConverter";
 import textToIdConverter from "@/utils/textToIdConverter";
-import SmoothScrollLink from "@/components/SmoothScrollLink";
+import SmoothScrollLink from "@/components/blog/SmoothScrollLink";
 import useFetch from "@/utils/useFetch";
 import "./article.css";
 import { env } from "process";

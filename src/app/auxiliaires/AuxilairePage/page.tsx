@@ -1,8 +1,8 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+import Header from "@/components/global/Header"
+import Footer from "@/components/global/Footer"
 
 export default function Home() {
   return (

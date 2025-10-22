@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Scale, Users, UserCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ServicesList from "@/components/ServicesList";
+import ServicesList from "@/components/global/ServicesList";
 
 export default function Home() {
   const services = [

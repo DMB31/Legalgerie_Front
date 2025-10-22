@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { Scale, Users, UserCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/global/Header";
+import Footer from "@/components/global/Footer";
 import { useFetchBySlug } from "@/utils/useFetchBySlug";
 import { env } from "process";
-import ServicesList from "@/components/ServicesList";
+import ServicesList from "@/components/global/ServicesList";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;

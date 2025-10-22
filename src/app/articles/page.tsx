@@ -1,4 +1,4 @@
-import ArticleCards from "@/components/ArticleCards"
+import ArticleCards from "@/components/blog/ArticleCards"
 import useFetch from "@/utils/useFetch"
 
 export default async function ActualitesPage() {

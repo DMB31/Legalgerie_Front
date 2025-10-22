@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "../ui/card";
 import { Calendar as SC_Calandar } from "@/components/ui/calendar";
 import { Calendar } from "lucide-react";
-import TimeSelectCards from "./home/TimeSelectCards";
-import { Button } from "./ui/button";
+import TimeSelectCards from "./TimeSelectCards";
+import { Button } from "../ui/button";
 import { useState, useEffect } from "react";
 import { fr } from "date-fns/locale";
 import Link from "next/link";

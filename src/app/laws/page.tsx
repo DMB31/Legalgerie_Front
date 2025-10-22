@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, X, Scale, Loader2, FileText, Download } from 'lucide-react';
-import Header from '@/components/Header';
+import Header from '@/components/global/Header';
 
 interface Law {
   key: string;
