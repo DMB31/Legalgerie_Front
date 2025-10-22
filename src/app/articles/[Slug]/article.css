@@ -36,3 +36,13 @@ article p {
 article p:last-child {
   margin-bottom: 0;
 }
+
+article ul {
+  margin-left: 2rem ;
+  margin-bottom: 1rem;
+  list-style:disc;
+}
+
+article a {
+  color: var(--color-primary);
+}

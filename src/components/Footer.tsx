@@ -1,4 +1,3 @@
-import Link from "next/link"
 import {Facebook, Twitter, Linkedin } from "lucide-react"
 export default function Footer() {
   return (

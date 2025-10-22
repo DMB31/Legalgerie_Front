@@ -46,7 +46,7 @@ export const HeaderDropDown = ({ sublinks, label }: HeaderDropDownProps) => {
           onMouseLeave={() => {
             setEnterDropDown(false);
           }}
-          className="bg-white absolute bottom-0 left-0 translate-y-full translate-x-1/4 w-max h-auto z-[1000] border-2 rounded-lg p-1  shadow-lg"
+          className="bg-white absolute bottom-0 left-0 translate-y-full translate-x-1/12 w-max h-auto z-[1000] border-2 rounded-lg p-1  shadow-lg"
         >
           <ul className="flex flex-col gap-1">
             {sublinks.map((sublink, index) => {

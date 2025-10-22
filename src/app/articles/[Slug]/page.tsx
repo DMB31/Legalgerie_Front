@@ -1,17 +1,13 @@
 import Image from "next/image";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import RichTextConverter from "@/components/RichTextConverter";
+import textToIdConverter from "@/utils/textToIdConverter";
+import SmoothScrollLink from "@/components/SmoothScrollLink";
+import useFetch from "@/utils/useFetch";
 import "./article.css";
+import { env } from "process";
+
 type PageProps = {
   params: Promise<{ Slug: string }>;
-};
-const useFetch = async (uri: string) => {
-  const data = await fetch(uri);
-  if (!data.ok) {
-    throw new Error("Failed to fetch");
-  }
-  const res = await data.json();
-  console.log(res);
-  return res;
 };
 
 async function getPosts(id: string) {
@@ -19,6 +15,7 @@ async function getPosts(id: string) {
 }
 
 export default async function ArticleDetailPage({ params }: PageProps) {
+  const rootCMSUrl = env.PAYLAOD_BASE_URL
   const { Slug } = await params;
 
   const posts = await getPosts(Slug);
@@ -30,23 +27,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
   });
 
   const titles = posts.contenu.root.children
-    .filter((el: any) => {
-      return el.type === "heading";
+    .filter((node: any) => {
+      return node.type === "heading";
     })
-    .map((el: any) => {
-      return { text: el.children[0].text, tag: el.tag };
+    .map((node: any) => {
+      return textToIdConverter(node);
     });
 
-  console.log("titles", titles);
-
-  // Sample article data - in a real app, this would be fetched based on the slug
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -59,9 +46,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               {posts.titre}
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              {
-                "la vie de couple, les enfants, le patrimoine. Dans ces moments parfois délicats, il est essentiel d'être accompagné par un spécialiste compétent et à l'écoute."
-              }
+              { posts.introduction }
             </p>
           </div>
         </div>
@@ -73,7 +58,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="max-w-6xl mx-auto">
             <div className="relative h-[300px] md:h-[400px] w-full">
               <Image
-                src={posts.image.url || "/placeholder.svg"}
+                src={`${rootCMSUrl}${posts.image.url}`}
                 alt={posts.image.alt}
                 fill
                 className="object-cover"
@@ -109,9 +94,13 @@ export default async function ArticleDetailPage({ params }: PageProps) {
                   <nav className="space-y-2">
                     {titles.map((title: any, i: number) => {
                       return (
-                        <button key={i} className="block text-left text-sm text-gray-600 hover:text-[#D4A574] transition-colors w-full">
-                          {title.text} 
-                        </button>
+                        <SmoothScrollLink
+                          key={i}
+                          id={title.id}
+                          className="block text-left text-sm text-gray-600 hover:text-[#D4A574] transition-colors w-full"
+                        >
+                          {title.text}
+                        </SmoothScrollLink>
                       );
                     })}
                   </nav>
@@ -120,7 +109,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
               {/* Main Content */}
               <article className="prose prose-lg max-w-none">
-                <RichText data={posts.contenu} />
+                <RichTextConverter lexicalData={posts.contenu} />
               </article>
             </div>
           </div>

@@ -1,13 +1,10 @@
 import Image from "next/image"
 import { Scale, Users, UserCheck, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Header />
 
       {/* Hero Section */}
       <section className="relative bg-black text-white py-24 md:py-32">
@@ -179,7 +176,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

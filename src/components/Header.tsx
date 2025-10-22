@@ -1,38 +1,39 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { HeaderDropDown } from "./HeaderDropDown"
+import { env } from "process"
 
-export default function Header() {
+
+const getLinks = async (postType: string) => {
+  const res = await fetch(`${env.PAYLAOD_BASE_URL}/api/${postType}`)
+  const data = await res.json()
+  const links = data.docs.map((post: any) => {
+      return {href: `http://192.168.0.210:3000/${postType}/test/${post.slug}`, label : post.domaine}
+  })
+
+  return links
+}
+
+export default async function Header() {
+
+  const auxiliaire_links = await getLinks('auxiliaires')
+  const consultation_links = await getLinks('consultation')
+
   const Consultation = {
     label: "Consultation",
-    sublinks: [
-      { href:'/consultation/droit-administratif', label:'Droit administratif'},
-      { href:'/consultation/droit-penal', label:'Droit pénal'},
-      { href:'/consultation/droit-immobilier', label:'Droit immobilier'},
-      { href:'/consultation/droit-de-la-famille', label:'Droit de la famille'},
-      { href:'/consultation/droit-du-travail', label:'Droit du travail'},
-      { href:'/consultation/droit-fiscal', label:'Droit fiscal'},
-      { href:'/consultation/droit-international-prive', label:'Droit des étrangers'},
-    ]
+    sublinks: consultation_links
   }
   const ActualitesLegislatives = {
     label: "Actualités Législatives",
     sublinks: [
-      { href:'string', label:'Blog'},
-      { href:'string', label:'Zoom sur l’affaire'},
+      { href:'/articles', label:'Blog'},
+      { href:'/articles', label:'Zoom sur l’affaire'},
     ]
   }
 
    const Auxiliaires = {
     label: "Auxiliaires",
-    sublinks: [
-      { href:'/avocat', label:'Avocat'},
-      { href:'/notaire', label:'Notaire'},
-      { href:'/huissier-de-justice', label:'Notaire'},
-      { href:'/traducteur-interprète', label:'Traducteur interprète'},
-      { href:'/juriste', label:'Juriste'},
-      { href:'/expert-judiciaire', label:'Expert judiciaire'},
-    ]
+    sublinks: auxiliaire_links
   }
 
 
@@ -48,9 +49,6 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-sm hover:text-primary transition-colors">
-              Accueil
-            </Link>
             <HeaderDropDown label={Consultation.label} sublinks={Consultation.sublinks}/>
             <HeaderDropDown label={ActualitesLegislatives.label} sublinks=
             {ActualitesLegislatives.sublinks}/>
