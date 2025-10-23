@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { r2Client, R2_BUCKET_NAME_DOCUMENTS } from '@/lib/r2';
-import { createSlug } from '@/lib/slugify';
+import { r2Client, R2_BUCKET_NAME_DOCUMENTS } from '@/utils/r2';
+import { createSlug } from '@/utils/slugify';
 
 export async function GET(
   request: NextRequest,

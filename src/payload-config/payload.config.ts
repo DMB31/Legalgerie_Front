@@ -31,8 +31,8 @@ export default buildConfig({
     },
   },
   routes: {
-    admin: '/dashboard',
-    api: '/api',
+    admin: '/admin',
+    api: '/api/payload',
   },
   collections: [Users, Media, Posts, Categories, Consultation, Auxiliaires],
   defaultDepth: 1,

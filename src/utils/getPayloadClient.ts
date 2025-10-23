@@ -1,5 +1,5 @@
 import payload from "payload";
-import config from "@/payload/payload.config"; // path to your payload.config.ts
+import config from "@/payload-config/payload.config"; // path to your payload.config.ts
 
 let initialized = false;
 

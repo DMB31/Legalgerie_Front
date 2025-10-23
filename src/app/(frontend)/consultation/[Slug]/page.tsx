@@ -6,7 +6,7 @@ import Footer from "@/components/global/Footer";
 import { getCollectionBySlug } from "@/utils/getCollectionBySlug";
 import { env } from "process";
 import ServicesList from "@/components/global/ServicesList";
-import { Consultation } from "@/payload/payload-types";
+import { Consultation } from "@/payload-config/payload-types";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;

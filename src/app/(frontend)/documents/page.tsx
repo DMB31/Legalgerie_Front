@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Search, X, FileText, Loader2, LayoutGrid, List } from "lucide-react";
-import { createSlug } from "@/lib/slugify";
+import { createSlug } from "@/utils/slugify";
 import { Document } from "@/types";
 import CardsGridView from "@/components/documents/CardsGridView";
 import CardListView from "@/components/documents/CardListView";

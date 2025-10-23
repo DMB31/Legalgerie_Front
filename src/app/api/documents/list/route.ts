@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { GetObjectCommand } from '@aws-sdk/client-s3';
-import { r2Client, R2_BUCKET_NAME_DOCUMENTS } from '@/lib/r2';
+import { r2Client, R2_BUCKET_NAME_DOCUMENTS } from '@/utils/r2';
 
 export async function GET() {
   try {

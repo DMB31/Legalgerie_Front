@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { getCollectionBySlug } from "@/utils/getCollectionBySlug";
 import { env } from "process";
 import ServicesList from "@/components/global/ServicesList";
-import { Auxiliaire } from "@/payload/payload-types";
+import { Auxiliaire } from "@/payload-config/payload-types";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;

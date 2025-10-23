@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ListObjectsV2Command } from '@aws-sdk/client-s3';
-import { r2Client, R2_BUCKET_NAME_LAWS } from '@/lib/r2';
+import { r2Client, R2_BUCKET_NAME_LAWS } from '@/utils/r2';
 
 export async function GET(
   request: NextRequest,
