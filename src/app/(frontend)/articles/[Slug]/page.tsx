@@ -2,23 +2,39 @@ import Image from "next/image";
 import RichTextConverter from "@/components/blog/RichTextConverter";
 import textToIdConverter from "@/utils/textToIdConverter";
 import SmoothScrollLink from "@/components/blog/SmoothScrollLink";
-import useFetch from "@/utils/useFetch";
 import "./article.css";
 import { env } from "process";
+import { getPayloadClient } from "@/utils/getPayloadClient";
+import { notFound } from "next/navigation";
+import { ImageConfig } from "next/dist/shared/lib/image-config";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;
 };
 
-async function getPosts(id: string) {
-  return await useFetch(`http://192.168.0.210:3001/api/posts/${id}`);
+async function getPost(id: string) {
+  const payload = await getPayloadClient();
+  try {
+    const post = await payload.findByID({
+      collection: "posts",
+      id: id,
+    });
+
+    return post;
+  } catch (err: any) {
+    if (err.name?.toLowerCase().includes("notfound")) {
+      notFound();
+    }
+
+    throw err;
+  }
 }
 
 export default async function ArticleDetailPage({ params }: PageProps) {
-  const rootCMSUrl = env.PAYLAOD_BASE_URL
+  const rootCMSUrl = env.PAYLAOD_BASE_URL;
   const { Slug } = await params;
 
-  const posts = await getPosts(Slug);
+  const posts = await getPost(Slug);
 
   const publish_date = new Date(posts.publierLe).toLocaleDateString("fr-FR", {
     day: "2-digit",
@@ -34,7 +50,6 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       return textToIdConverter(node);
     });
 
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -46,7 +61,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
               {posts.titre}
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              { posts.introduction }
+              {posts.introduction}
             </p>
           </div>
         </div>

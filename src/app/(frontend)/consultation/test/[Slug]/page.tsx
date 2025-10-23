@@ -1,24 +1,26 @@
 import Image from "next/image";
 import { Scale, Users, UserCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useFetchBySlug } from "@/utils/useFetchBySlug";
+import Header from "@/components/global/Header";
+import Footer from "@/components/global/Footer";
+import { getCollectionBySlug } from "@/utils/getCollectionBySlug";
 import { env } from "process";
 import ServicesList from "@/components/global/ServicesList";
+import { Consultation } from "@/payload/payload-types";
 
 type PageProps = {
   params: Promise<{ Slug: string }>;
 };
 
 async function getPosts(slug: string) {
-  console.log(slug)
-  return await useFetchBySlug( 'auxiliaires' , slug);
+  return await getCollectionBySlug('consultation' ,slug);
 }
 
 export default async function ConsultationPage({ params }: PageProps) {
   const { Slug } = await params;
   console.log(Slug);
   const data = await getPosts(Slug);
-  const post = data.docs[0];
+  const post = data.docs[0] as Consultation;
 
   return (
     <div className="min-h-screen">
@@ -54,8 +56,8 @@ export default async function ConsultationPage({ params }: PageProps) {
             {/* Image */}
             <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
               <Image
-                src={`${env.PAYLAOD_BASE_URL}${post.image?.url}`}
-                alt={post.image?.alt}
+                src={`${env.PAYLAOD_BASE_URL}${post.image.url}`}
+                alt={post.image.alt}
                 width={397}
                 height={596}
                 className="w-full h-full object-cover"
@@ -67,11 +69,12 @@ export default async function ConsultationPage({ params }: PageProps) {
               {/* Header */}
               <div className="mb-[42px]">
                 <h2 className="text-4xl font-semibold !leading-[130%] mb-2">
-                  Quelles sont les fonctions d'un{" "}
+                  Quand faire appel à un avocat en{" "}
                   <span className="text-primary">{post.domaine}</span> ?
                 </h2>
                 <p className="text-base font-normal leading-6">
-                  Les situations suivantes nécessitent souvent l’intervention d’un {post.domaine.toLowerCase()} :
+                  Les situations suivantes nécessitent souvent un accompagnement
+                  juridique par un experts en {post.domaine.toLowerCase()} :
                 </p>
               </div>
 

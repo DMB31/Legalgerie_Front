@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/admin/:path*',
+        destination: '/api/payload', // The Payload API route
+      },
+    ];
+  },
 };
 
 export default nextConfig;

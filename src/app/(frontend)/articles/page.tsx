@@ -1,8 +1,13 @@
 import ArticleCards from "@/components/blog/ArticleCards"
-import useFetch from "@/utils/useFetch"
+import { getPayloadClient } from "@/utils/getPayloadClient"
 
 export default async function ActualitesPage() {
-  const data = await useFetch('http://localhost:3001/api/posts')
+  const payload = await getPayloadClient()
+
+  const data = await payload.find({
+    collection: 'posts',
+    limit: 0
+  })
 
   const articles = data.docs
 

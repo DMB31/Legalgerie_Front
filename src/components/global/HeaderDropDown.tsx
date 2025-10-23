@@ -9,7 +9,7 @@ type HeaderSubLinksProps = {
 };
 
 type HeaderDropDownProps = {
-  sublinks: Array<HeaderSubLinksProps>;
+  sublinks: Array<HeaderSubLinksProps> | undefined; 
   label: string;
 };
 
@@ -49,7 +49,7 @@ export const HeaderDropDown = ({ sublinks, label }: HeaderDropDownProps) => {
           className="bg-white absolute bottom-0 left-0 translate-y-full translate-x-1/12 w-max h-auto z-[1000] border-2 rounded-lg p-1  shadow-lg"
         >
           <ul className="flex flex-col gap-1">
-            {sublinks.map((sublink, index) => {
+            {sublinks?.map((sublink, index) => {
               return (
                 <HeaderDropDownLink key={index} href={sublink.href}>
                   {sublink.label}

@@ -28,7 +28,7 @@ const CourtsInfoCard = ({
   return (
     <div className="lg:col-span-1">
       {selectedCourt ? (
-        <div className="bg-card border-2 border-primary rounded-2xl shadow-2xl overflow-hidden sticky top-8 animate-slideIn">
+        <div className="bg-card border-2 border-primary rounded-2xl shadow-2xl top-8 animate-slideIn">
           <div className="bg-primary text-primary-foreground px-6 py-4 flex justify-between items-center">
             <h2 className="text-2xl font-bold">{selectedCourt.name}</h2>
             <button

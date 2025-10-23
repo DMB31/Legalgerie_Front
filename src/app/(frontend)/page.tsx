@@ -3,15 +3,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
 import ArticleCards from "@/components/blog/ArticleCards";
-import useFetch from "@/utils/useFetch";
 import Booking from "@/components/home/Booking";
 import Faq from "@/components/global/Faq";
+import { getPayloadClient } from "@/utils/getPayloadClient";
 
 const fetchRecentArticles = async () => {
-  const data = await useFetch("http://localhost:3001/api/posts");
+  const payload = await getPayloadClient()
 
-  const recent = data.docs.slice(0, 3);
-  return recent;
+  const latest_posts = await payload.find({
+    collection: 'posts',
+    sort: '-createdAt',
+    limit: 3
+  })
+
+  return latest_posts.docs;
 };
 
 export default async function LegalGeriePage() {
