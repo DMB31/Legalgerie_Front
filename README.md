@@ -22,7 +22,7 @@ This repository contains the frontend application for Legalgerie. It is designed
 ## Setup
 1. Clone the repo:
     ```
-    git clone <repo-url>
+    git clone https://github.com/DMB31/Legalgerie_Front.git
     cd Legalgerie_Front
     ```
 2. Install dependencies:
@@ -40,10 +40,7 @@ Update package.json scripts as necessary. Typical scripts:
 ```
 npm run dev       # start local dev server
 npm run build     # production build
-npm run preview   # preview production build (optional)
-npm run lint      # run linter
-npm run test      # run unit tests
-npm run format    # code formatting (prettier)
+npm run start     # start server
 ```
 
 ## Environment variables
@@ -66,6 +63,4 @@ Add required vars to `.env` you can see `.env.example` for refrence:
 ```
 
 ## Contributing
-- Follow code style and lint rules.
-- Open an issue for significant changes.
-- push code to `dev` never main branch without a PR.
+- push code to `dev` never to main branch without a PR.
