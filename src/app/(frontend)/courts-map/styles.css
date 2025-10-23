@@ -1,0 +1,115 @@
+.svg-map-container {
+  position: relative;
+  background: linear-gradient(135deg, #fef9f3 0%, #ffffff 100%);
+}
+
+.dark .svg-map-container {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+}
+
+.svg-map-container svg {
+  width: 100%;
+  height: auto;
+  max-height: 800px;
+}
+
+.wilaya-path {
+  fill: #e5e7eb;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .wilaya-path {
+  fill: #4a5568;
+  stroke: #1a202c;
+}
+
+.wilaya-path:hover,
+.wilaya-path.hovered {
+  fill: #C39A5C !important;
+  stroke: #a67c47;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 4px 12px rgba(195, 154, 92, 0.4));
+  transform: translateY(-2px);
+}
+
+.wilaya-path.selected {
+  fill: #a67c47 !important;
+  stroke: #8b6a3e;
+  stroke-width: 3;
+}
+
+.wilaya-path-disabled {
+  fill: #d1d5db;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  cursor: not-allowed;
+  opacity: 0.5;
+  transition: none;
+}
+
+.dark .wilaya-path-disabled {
+  fill: #374151;
+  stroke: #1a202c;
+  opacity: 0.3;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.info-panel {
+  backdrop-filter: blur(10px);
+}
+
+.search-results {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@media (max-width: 1024px) {
+  .svg-map-container {
+    padding: 1rem;
+  }
+
+  .svg-map-container svg {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .svg-map-container {
+    padding: 0.5rem;
+  }
+
+  .svg-map-container svg {
+    max-height: 400px;
+  }
+}

@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Legalgerie Frontend
 
-## Getting Started
+NextJS frontend for the Legalgerie project.
 
-First, run the development server:
+## Contents
+- Overview
+- Prerequisites
+- Setup
+- Available scripts
+- Environment
+- Project structure
+- Contributing
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+This repository contains the frontend application for Legalgerie. It is designed as a modern NextJS App. The README assumes standard Node tooling (npm).
+
+## Prerequisites
+- Node.js (LTS)
+- npm
+- Optional: Git
+
+## Setup
+1. Clone the repo:
+    ```
+    git clone <repo-url>
+    cd Legalgerie_Front
+    ```
+2. Install dependencies:
+    ```
+    npm install
+    ```
+3. Create environment file:
+    ```
+    cp .env.example .env
+    # edit .env to set API endpoints and keys
+    ```
+
+## Available scripts
+Update package.json scripts as necessary. Typical scripts:
+```
+npm run dev       # start local dev server
+npm run build     # production build
+npm run preview   # preview production build (optional)
+npm run lint      # run linter
+npm run test      # run unit tests
+npm run format    # code formatting (prettier)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment variables
+Add required vars to `.env` you can see `.env.example` for refrence:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure (suggested)
+```
+/
+├─ public/               # static assets
+├─ src/
+│  ├─ app/
+│  │  └─ api/            # backend routes
+│  ├─ components/
+│  ├─ lib/
+│  ├─ utils/          
+│  └─ types.tsx/     
+├─ .env.example
+├─ package.json
+└─ README.md
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+- Follow code style and lint rules.
+- Open an issue for significant changes.
+- push code to `dev` never main branch without a PR.
