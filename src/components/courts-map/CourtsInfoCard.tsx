@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import InfoItem from "./InfoItem";
 import {
   X,
@@ -11,8 +11,17 @@ import {
   ChevronUp,
 } from "lucide-react";
 
-import { Court } from "@/types";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
+import { Court, Tribunal } from "@/types";
 
 const CourtsInfoCard = ({
   selectedCourt,
@@ -25,11 +34,18 @@ const CourtsInfoCard = ({
   expandedTribunals: boolean;
   setExpandedTribunals: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [tribunal, setTribunal] = useState<Tribunal | null>(null);
+
+  useEffect(() => {
+    setTribunal(null)
+  }, [selectedCourt])
+
   return (
     <div className="lg:col-span-1">
       {selectedCourt ? (
-        <div className="bg-card border-2 border-primary rounded-2xl shadow-2xl top-8 animate-slideIn">
-          <div className="bg-primary text-primary-foreground px-6 py-4 flex justify-between items-center">
+        <>
+        <div className="bg-card border-2 border-primary rounded-2xl shadow-md top-8 animate-slideIn">
+          <div className="bg-primary rounded-t-xl text-primary-foreground px-6 py-4 flex justify-between items-center">
             <h2 className="text-2xl font-bold">{selectedCourt.name}</h2>
             <button
               onClick={() => setSelectedCourt(null)}
@@ -73,66 +89,83 @@ const CourtsInfoCard = ({
                 />
               )}
             </div>
-
-            {selectedCourt.tribunals && selectedCourt.tribunals.length > 0 && (
+          </div>
+          
+        </div>
+        {selectedCourt.tribunals && selectedCourt.tribunals.length > 0 && (
               <div className="border-t-2 border-border pt-6">
-                <button
-                  onClick={() => setExpandedTribunals(!expandedTribunals)}
-                  className="w-full flex justify-between items-center text-xl font-bold mb-4 hover:text-primary transition-colors"
+                <Select
+                  onValueChange={(val) => {
+                    const selectedTribunal = selectedCourt.tribunals.find(
+                      (item) => item.id === val
+                    );
+                    if (selectedTribunal) {
+                      setTribunal(selectedTribunal);
+                    }
+                  }}
                 >
-                  <span>
-                    Tribunaux rattachés ({selectedCourt.tribunals.length})
-                  </span>
-                  {expandedTribunals ? <ChevronUp /> : <ChevronDown />}
-                </button>
-
-                {expandedTribunals && (
-                  <div className="space-y-6">
-                    {selectedCourt.tribunals.map((tribunal, index) => (
-                      <div
-                        key={tribunal.id}
-                        className="bg-secondary p-4 rounded-xl border border-border hover:border-primary transition-all"
-                      >
-                        <h4 className="font-bold text-lg mb-3 text-primary">
-                          {tribunal.name}
-                        </h4>
-                        <div className="space-y-2 text-sm">
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Selectionnez Tribunal" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Tribunals</SelectLabel>
+                      {selectedCourt.tribunals.map((tribunal, index) => {
+                        return (
+                          <SelectItem key={index} value={tribunal.id}>
+                            {tribunal.name}
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                {tribunal ? (
+                  <div className="my-4">
+                    <div
+                      key={tribunal.id}
+                      className="bg-secondary p-4 rounded-xl border border-border hover:border-primary transition-all"
+                    >
+                      <h4 className="font-bold text-lg mb-3 text-primary">
+                        {tribunal.name}
+                      </h4>
+                      <div className="space-y-2 text-sm">
+                        <InfoItem
+                          icon={<Phone className="w-4 h-4" />}
+                          label="Téléphone"
+                          value={tribunal.telephone}
+                          small
+                        />
+                        <InfoItem
+                          icon={<Mail className="w-4 h-4" />}
+                          label="Email"
+                          value={tribunal.email}
+                          isEmail
+                          small
+                        />
+                        <InfoItem
+                          icon={<MapPin className="w-4 h-4" />}
+                          label="Adresse"
+                          value={tribunal.address}
+                          small
+                        />
+                        {tribunal.reception_days && (
                           <InfoItem
-                            icon={<Phone className="w-4 h-4" />}
-                            label="Téléphone"
-                            value={tribunal.telephone}
+                            icon={<Calendar className="w-4 h-4" />}
+                            label="Jours de réception"
+                            value={tribunal.reception_days}
                             small
                           />
-                          <InfoItem
-                            icon={<Mail className="w-4 h-4" />}
-                            label="Email"
-                            value={tribunal.email}
-                            isEmail
-                            small
-                          />
-                          <InfoItem
-                            icon={<MapPin className="w-4 h-4" />}
-                            label="Adresse"
-                            value={tribunal.address}
-                            small
-                          />
-                          {tribunal.reception_days && (
-                            <InfoItem
-                              icon={<Calendar className="w-4 h-4" />}
-                              label="Jours de réception"
-                              value={tribunal.reception_days}
-                              small
-                            />
-                          )}
-                        </div>
+                        )}
                       </div>
-                    ))}
+                    </div>
                   </div>
+                ) : (
+                  <></>
                 )}
               </div>
             )}
-          </div>
-        </div>
+        </>
       ) : (
         <div className="bg-card border-2 border-border rounded-2xl shadow-lg p-8 text-center sticky top-8">
           <div className="text-muted-foreground mb-4">
@@ -146,6 +179,7 @@ const CourtsInfoCard = ({
           </div>
         </div>
       )}
+      
     </div>
   );
 };

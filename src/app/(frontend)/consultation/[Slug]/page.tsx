@@ -15,7 +15,6 @@ async function getPosts(slug: string) {
 
 export default async function ConsultationPage({ params }: PageProps) {
   const { Slug } = await params;
-  console.log(Slug);
   const data = await getPosts(Slug);
   const post = data.docs[0] as Consultation;
 

@@ -37,7 +37,6 @@ const InteractiveMap = ({
             paths.forEach((path) => {
               const wilayaId = path.getAttribute("id");
               const court = courtsData.find((c) => c.id === wilayaId);
-              console.log(courtsData);
 
               if (court) {
                 // Wilaya has data - make it clickable

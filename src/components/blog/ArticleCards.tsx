@@ -17,8 +17,6 @@ const ArticleCards = ({ article }: any) => {
     year: "numeric",
   });
 
-  console.log(article.image)
-
   return (
     <Card
       className="hover:shadow-lg transition-shadow"

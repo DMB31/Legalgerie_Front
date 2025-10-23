@@ -2,19 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  X,
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
-  Globe,
-  ChevronDown,
-  ChevronUp,
   HelpCircle,
 } from "lucide-react";
 import "./styles.css";
 import HelpModal from "@/components/courts-map/HelpModal";
-import InfoItem from "@/components/courts-map/InfoItem";
 import SearchCourt from "@/components/courts-map/SearchCourt";
 import InteractiveMap from "@/components/courts-map/InteractiveMap";
 import CourtsInfoCard from "@/components/courts-map/CourtsInfoCard";
@@ -39,7 +30,6 @@ export default function CourtsMapPage() {
         setCourtsData(data);
         setFilteredCourts(data);
         setIsLoading(false);
-        console.log(data)
       })
       .catch((err) => {
         console.error("Error loading courts data:", err);
@@ -65,13 +55,6 @@ export default function CourtsMapPage() {
                   <HelpCircle className="w-5 h-5" />
                   <span className="hidden sm:inline">Aide</span>
                 </button>
-                {/* <button
-                  onClick={() => setIsDarkMode(!isDarkMode)}
-                  className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
-                  title={isDarkMode ? "Mode Jour" : "Mode Nuit"}
-                >
-                  {isDarkMode ? "☀️" : "🌙"}
-                </button> */}
               </div>
             </div>
           </div>
