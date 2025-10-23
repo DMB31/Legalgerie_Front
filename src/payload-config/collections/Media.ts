@@ -1,5 +1,11 @@
 import type { CollectionConfig } from 'payload'
 import editor from './Users/access/editor'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -16,5 +22,8 @@ export const Media: CollectionConfig = {
       required: true,
     },
   ],
-  upload: true,
+  upload: {
+    staticDir: path.resolve(dirname, '../../../public/payload-media'),
+  },
+
 }

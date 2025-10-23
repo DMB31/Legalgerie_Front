@@ -13,7 +13,7 @@ const getLinks = async (collectionName: CollectionSlug) => {
     });
     const links = collections.docs.map((collection: any) => {
       return {
-        href: `http://192.168.0.210:3000/${collectionName}/test/${collection.slug}`,
+        href: `http://192.168.0.210:3000/${collectionName}/${collection.slug}`,
         label: collection.domaine,
       };
     });

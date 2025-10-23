@@ -31,7 +31,6 @@ async function getPost(id: string) {
 }
 
 export default async function ArticleDetailPage({ params }: PageProps) {
-  const rootCMSUrl = env.PAYLAOD_BASE_URL;
   const { Slug } = await params;
 
   const posts = await getPost(Slug);
@@ -73,7 +72,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="max-w-6xl mx-auto">
             <div className="relative h-[300px] md:h-[400px] w-full">
               <Image
-                src={`${rootCMSUrl}${posts.image.url}`}
+                src={`${posts.image.url}`}
                 alt={posts.image.alt}
                 fill
                 className="object-cover"

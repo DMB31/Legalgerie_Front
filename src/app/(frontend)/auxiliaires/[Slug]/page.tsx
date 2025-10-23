@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Scale, Users, UserCheck, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getCollectionBySlug } from "@/utils/getCollectionBySlug";
-import { env } from "process";
 import ServicesList from "@/components/global/ServicesList";
 import { Auxiliaire } from "@/payload-config/payload-types";
 
@@ -57,7 +56,7 @@ export default async function ConsultationPage({ params }: PageProps) {
             {/* Image */}
             <div className="w-full md:w-[397px] h-[596px] rounded-lg overflow-hidden flex-shrink-0">
               <Image
-                src={`${env.PAYLAOD_BASE_URL}${post.image?.url}`}
+                src={`${post.image?.url}`}
                 alt={post.image?.alt}
                 width={397}
                 height={596}

@@ -10,7 +10,6 @@ import { env } from "process";
 
 
 const ArticleCards = ({ article }: any) => {
-  const rootCMSUrl = env.PAYLAOD_BASE_URL
 
   const publish_date = new Date(article.publierLe).toLocaleDateString("fr-FR", {
     day: "2-digit",
@@ -18,13 +17,15 @@ const ArticleCards = ({ article }: any) => {
     year: "numeric",
   });
 
+  console.log(article.image)
+
   return (
     <Card
       className="hover:shadow-lg transition-shadow"
     >
       <div className="relative h-64">
         <Image
-          src={`${rootCMSUrl}${article.image.url}`}
+          src={`${article.image.url}`}
           alt={article.image.alt}
           fill
           className="object-cover rounded-t-md"
