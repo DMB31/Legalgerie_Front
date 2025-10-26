@@ -10,10 +10,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '3000'
+        port: '3000',
       }
     ],
   },
+  allowedDevOrigins: ['localhost'] 
 };
 
 export default nextConfig;

@@ -22,8 +22,6 @@ export default buildConfig({
     supportedLanguages: { fr },
     fallbackLanguage: 'fr', 
   },
-  cors: ['http://localhost:3000'], 
-  csrf: ['http://localhost:3000'],
   admin: {
     user: Users.slug,
     importMap: {

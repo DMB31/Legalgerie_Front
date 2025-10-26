@@ -3,11 +3,8 @@ import { checkRole } from './checkRole'
 
 const admin: Access = ({ req: { user } }) => {
   if (user) {
-    if (checkRole(['admin'], user)) {
-      return true
-    }
+    return checkRole(['admin'], user)
   }
-
   return false
 }
 
