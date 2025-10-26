@@ -2,8 +2,6 @@ import { checkRole } from './checkRole'
 import admin from './admin'
 import type { User } from '@/payload-config/payload-types'
 
-
-
 describe('checkRole', () => {
   const mockUser = (roles: string[]): User =>
     ({ id: '1', email: 'test@example.com', roles } as unknown as User)
@@ -52,6 +50,3 @@ describe('admin access rule', () => {
     expect(result).toBe(false)
   })
 })
-
-
-

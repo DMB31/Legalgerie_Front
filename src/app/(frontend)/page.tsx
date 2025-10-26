@@ -334,11 +334,11 @@ export default async function LegalGeriePage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-8 max-w-5xl mx-auto">
             {steps.map((step, index) => (
               <div key={index} className="relative h-full">
                 {/* Icon positioned at the top of the border */}
-                <div className="absolute top-5 sm:-top-6 left-4 sm:left-6 bg-black px-2">
+                <div className="absolute left-6 -top-5 bg-black px-2">
                   <Image
                     src={step.icon}
                     alt={step.title}

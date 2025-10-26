@@ -78,10 +78,10 @@ const Booking = () => {
   const slotStates = getSlotStates(timeSlots, appointments, dateStringFromat);
 
   return (
-    <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
       {/* Calendar */}
-      <Card className="shadow-lg">
-        <CardContent className="p-4 sm:p-6 md:p-8">
+      <Card className="shadow-lg sm:col-span-1 p-4">
+        <CardContent className="">
           <div className="flex items-center justify-between mb-4 sm:mb-6">
             <h3 className="text-base sm:text-lg font-bold flex items-center gap-2">
               <div className="p-1.5 sm:p-2 bg-[#D4A574]/10 rounded-lg">
@@ -128,7 +128,7 @@ const Booking = () => {
       </Card>
 
       {/* Time Slots */}
-      <Card className="shadow-lg col-span-2">
+      <Card className="shadow-lg col-span-2 p-4">
         <CardContent className="p-4 sm:p-6 md:p-8">
           <h3 className="text-base sm:text-lg font-bold mb-2 flex items-center gap-2">
             <div className="p-1.5 sm:p-2 bg-[#D4A574]/10 rounded-lg">
@@ -150,7 +150,7 @@ const Booking = () => {
           </h3>
           {selectedDate ? (
             <>
-              <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
+              <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6 ">
                 Créneaux disponibles pour le{" "}
                 {selectedDate.toLocaleDateString("fr-FR", {
                   weekday: "long",
@@ -159,7 +159,7 @@ const Booking = () => {
                   day: "numeric",
                 })}
               </p>
-              <div className="flex w-full my-8 gap-4">
+              <div className="flex flex-wrap w-full my-8 gap-4">
                 <TimeSelectCards
                   colors={{
                     bgColor: "bg-[#EAECFA]",
@@ -200,7 +200,7 @@ const Booking = () => {
                       Matin
                     </p>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-2">
                     {slotStates.slice(0, 6).map((slot, index) => (
                       <Button
                         disabled={!slot.available}
@@ -209,7 +209,7 @@ const Booking = () => {
                           slot.time === selectTime ? "default" : "outline"
                         }
                         size="sm"
-                        className="text-xs sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8 sm:h-9"
+                        className="text-xs sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8"
                         onClick={() => setSelectTime(slot.time)}
                         aria-pressed={selectTime === slot.time}
                       >
@@ -236,7 +236,7 @@ const Booking = () => {
                       Après-midi
                     </p>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-2">
                     {slotStates.slice(6).map((slot, index) => (
                       <Button
                         disabled={!slot.available}
@@ -245,7 +245,7 @@ const Booking = () => {
                           slot.time === selectTime ? "default" : "outline"
                         }
                         size="sm"
-                        className="text-xs sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8 sm:h-9"
+                        className="text-s sm:text-sm font-medium hover:bg-[#D4A574] hover:text-white hover:border-[#D4A574] transition-all h-8 sm:h-9"
                         onClick={() => setSelectTime(slot.time)}
                         aria-pressed={selectTime === slot.time}
                       >
@@ -270,7 +270,7 @@ const Booking = () => {
               </div>
             </>
           ) : (
-            <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center">
+            <div className="flex flex-col items-center justify-center py-8 text-center">
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-3 sm:mb-4">
                 <Calendar className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" />
               </div>

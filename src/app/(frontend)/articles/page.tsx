@@ -29,7 +29,7 @@ export default async function ActualitesPage() {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="pb-14 bg-white">
         <div className="w-full max-w-[1100px] mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {articles.map((article: any, index : any) => (

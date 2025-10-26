@@ -85,7 +85,7 @@ export default async function ConsultationPage({ params }: PageProps) {
       {/* Platform Benefits Section */}
       <section className="py-16 md:py-24 bg-secondary">
         <div className="w-full max-w-[1100px] mx-auto px-4">
-          <div className="flex gap-12">
+          <div className="flex flex-col md:flex-row gap-12">
             <div className="mt-6">
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Pourquoi passer par notre{" "}
@@ -138,7 +138,7 @@ export default async function ConsultationPage({ params }: PageProps) {
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-black text-white">
         <div className="w-full max-w-[1100px] mx-auto px-4">
-          <div className="flex items-center justify-center gap-12">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-12">
             <div className="relative">
               <div className="bg-primary rounded-2xl px-8 pt-8 inline-block">
                 <Image

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ChevronDown, Facebook, Twitter, Linkedin } from "lucide-react"
+import Faq from "@/components/global/Faq"
 
 export default function FAQPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -109,29 +110,7 @@ export default function FAQPage() {
                   </div>
 
                   {/* Questions */}
-                  <div className="space-y-4">
-                    {section.questions.map((item) => {
-                      const currentIndex = questionIndex++
-                      return (
-                        <div key={currentIndex} className="border border-gray-200 rounded-lg overflow-hidden">
-                          <button
-                            onClick={() => setOpenFaq(openFaq === currentIndex ? null : currentIndex)}
-                            className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
-                          >
-                            <span className="font-medium text-gray-900">{item.question}</span>
-                            <ChevronDown
-                              className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ml-4 ${
-                                openFaq === currentIndex ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
-                          {openFaq === currentIndex && (
-                            <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed">{item.answer}</div>
-                          )}
-                        </div>
-                      )
-                    })}
-                  </div>
+                  <Faq faqs={section.questions}/>
                 </div>
               </div>
             ))}

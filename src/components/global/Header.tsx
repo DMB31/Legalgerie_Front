@@ -13,7 +13,7 @@ const getLinks = async (collectionName: CollectionSlug) => {
     });
     const links = collections.docs.map((collection: any) => {
       return {
-        href: `http://192.168.0.210:3000/${collectionName}/${collection.slug}`,
+        href: `/${collectionName}/${collection.slug}`,
         label: collection.domaine,
       };
     });
@@ -45,6 +45,15 @@ export default async function Header() {
     sublinks: auxiliaire_links,
   };
 
+  const Services = {
+    label: "Service",
+    sublinks: [
+      { href: "/documents", label: "Documents Administratifs" },
+      { href: "/laws", label: "Journal Officiel Algérien" },
+      { href: "/courts-map", label: "Carte des Tribunaux" },
+    ],
+  };
+
   return (
     <>
       <header className="bg-white border-b border-border sticky top-0 z-50">
@@ -56,6 +65,10 @@ export default async function Header() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
+              <HeaderDropDown
+                label={Services.label}
+                sublinks={Services.sublinks}
+              />
               <HeaderDropDown
                 label={Consultation.label}
                 sublinks={Consultation.sublinks}

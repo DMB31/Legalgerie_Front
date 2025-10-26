@@ -13,8 +13,8 @@ type Props = {
 
 const TimeSelectCards = ({colors, text} : Props) => {
     return (
-        <div className={`w-full ${colors.bgColor}`} >
-            <p className="flex flex-col items-center p-2"><span className={`text-xl ${colors.textColor}`}>{text.mainText}</span><span className="text-sm">{text.subtext}</span></p>
+        <div className={`flex-1 ${colors.bgColor}`} >
+            <p className="flex text-center flex-col items-center p-2"><span className={`text-xl ${colors.textColor}`}>{text.mainText}</span><span className="text-sm">{text.subtext}</span></p>
         </div>
     )
 }
