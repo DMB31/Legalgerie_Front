@@ -1,93 +1,31 @@
-"use client"
+import Faq from "@/components/global/Faq";
+import { getPayloadClient } from "@/utils/getPayloadClient";
+import { transformFAQ } from "@/utils/transformFaq";
 
-import { useState } from "react"
-import { ChevronDown, Facebook, Twitter, Linkedin } from "lucide-react"
-import Faq from "@/components/global/Faq"
+export default async function FAQPage() {
+  const payload = await getPayloadClient();
 
-export default function FAQPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const faqs = await payload.find({ collection: "faq", sort: "createdAt" });
 
-  const faqSections = [
-    {
-      title: "Questions Générales",
-      questions: [
-        {
-          question: "Comment fonctionne LEGALGERIE ?",
-          answer:
-            "LEGALGERIE est une plateforme en ligne qui vous met en relation avec des avocats qualifiés en Algérie. Vous posez votre question juridique, un expert analyse votre cas et vous fournit des conseils personnalisés dans les 24 heures.",
-        },
-        {
-          question: "Quels sont les domaines de droit couvert ?",
-          answer:
-            "Nous couvrons tous les principaux domaines du droit algérien : droit de la famille, droit fiscal, droit des affaires, droit immobilier, droit pénal, droit des étrangers, et bien d'autres.",
-        },
-        {
-          question: "Mes informations sont elles sécurisées ?",
-          answer:
-            "Absolument. Toutes vos données sont cryptées et stockées de manière sécurisée. Nous respectons la confidentialité avocat-client et ne partageons jamais vos informations avec des tiers.",
-        },
-      ],
-    },
-    {
-      title: "Services",
-      questions: [
-        {
-          question: "Quels services propose LEGALGERIE ?",
-          answer:
-            "Nous proposons des consultations juridiques en ligne, des conseils personnalisés, l'assistance lors de négociations, la rédaction de documents juridiques, et la mise en relation avec des avocats spécialisés.",
-        },
-        {
-          question: "Commet puis-je déposer mon dossier ?",
-          answer:
-            "Vous pouvez déposer votre dossier directement sur notre plateforme en remplissant le formulaire de consultation. Décrivez votre situation, ajoutez les documents pertinents, et un avocat prendra en charge votre demande.",
-        },
-        {
-          question: "Quel est le process suivi pour choisir mon juriste ?",
-          answer:
-            "Notre système analyse votre demande et la transmet automatiquement à l'avocat le plus qualifié dans le domaine concerné. Vous recevez ensuite une notification avec les coordonnées de votre juriste assigné.",
-        },
-      ],
-    },
-    {
-      title: "Support",
-      questions: [
-        {
-          question: "Puis-je annuler ou reporter un rendez-vous ?",
-          answer:
-            "Oui, vous pouvez annuler ou reporter un rendez-vous jusqu'à 24 heures avant l'heure prévue. Connectez-vous à votre compte et accédez à la section 'Mes rendez-vous' pour effectuer les modifications.",
-        },
-        {
-          question: "Comment puis-je contacter le support client ?",
-          answer:
-            "Notre équipe de support est disponible par email à team@legalfacile.dz ou par téléphone au +33 12789877 du lundi au vendredi de 9h à 18h. Vous pouvez également utiliser le chat en direct sur notre site.",
-        },
-        {
-          question: "Les consultations en ligne sont elle aussi efficace qu'en présentiel ?",
-          answer:
-            "Oui, les consultations en ligne sont tout aussi efficaces. Nos avocats utilisent des outils de visioconférence sécurisés et peuvent partager des documents en temps réel. De nombreux clients apprécient la flexibilité et le gain de temps.",
-        },
-      ],
-    },
-  ]
-
-  let questionIndex = 0
+  const grouped = transformFAQ(faqs)
 
   return (
     <div className="min-h-screen bg-background">
-  
-
       {/* Hero Section */}
       <section className="py-16 md:py-20 bg-white">
         <div className="w-full max-w-[1100px] mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-[#C9A05F] text-sm font-medium mb-4">FAQ</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Questions <span className="text-[#C9A05F]">fréquemment</span> posées
+              Questions <span className="text-[#C9A05F]">fréquemment</span>{" "}
+              posées
             </h2>
             <p className="text-gray-600 text-lg">
-              Voici une sélection des questions les plus fréquemment posées à propos de LEGALGERIE.
+              Voici une sélection des questions les plus fréquemment posées à
+              propos de LEGALGERIE.
               <br />
-              Si vous ne trouvez pas la réponse que vous cherchez, n'hésitez pas à{" "}
+              Si vous ne trouvez pas la réponse que vous cherchez, n'hésitez pas
+              à{" "}
               <a href="#" className="text-[#C9A05F] hover:underline">
                 contacter notre équipe
               </a>
@@ -101,23 +39,27 @@ export default function FAQPage() {
       <section className="py-16 bg-white">
         <div className="w-full max-w-[1100px] mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            {faqSections.map((section, sectionIndex) => (
+            {grouped.map((section, sectionIndex) => (
               <div key={sectionIndex} className="mb-16">
                 <div className="grid md:grid-cols-[250px_1fr] gap-8">
                   {/* Section Title */}
                   <div>
-                    <h3 className="text-2xl font-bold sticky top-24">{section.title}</h3>
+                    <h3 className="text-2xl font-bold sticky top-24">
+                      {section.type === "genQuestions"
+                        ? "Question Générale"
+                        : section.type.charAt(0).toUpperCase() +
+                          section.type.slice(1)}
+                    </h3>
                   </div>
 
                   {/* Questions */}
-                  <Faq faqs={section.questions}/>
+                  <Faq faqs={section.faqs} />
                 </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
     </div>
-  )
+  );
 }

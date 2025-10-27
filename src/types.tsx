@@ -33,3 +33,7 @@ export interface Document {
     Organization?: string;
   };
 }
+
+
+export type FaqType = { question: string; answer: string, showInHomePage: boolean }
+export type FaqsType = Array<FaqType>

@@ -7,44 +7,28 @@ import Booking from "@/components/home/Booking";
 import Faq from "@/components/global/Faq";
 import { getPayloadClient } from "@/utils/getPayloadClient";
 
-const fetchRecentArticles = async () => {
-  const payload = await getPayloadClient()
+import { transformFAQ } from "@/utils/transformFaq";
 
-  const latest_posts = await payload.find({
+
+export default async function LegalGeriePage() {
+  const payload = await getPayloadClient()
+  const faqsPaginated = await payload.find({ collection: "faq", sort: "createdAt" });
+  const recentArticlesPaginated = await payload.find({
     collection: 'posts',
     sort: '-createdAt',
     limit: 3
   })
+  const consultationCollection = await payload.find({
+      collection: 'consultation',
+      limit: 0,
+      sort: 'createdAt'
+  });
 
-  return latest_posts.docs;
-};
+  const services = consultationCollection.docs.map((item) => item.domaine)
 
-export default async function LegalGeriePage() {
-  [
-    {
-      startAt: "2025-10-16T10:36:00.000Z",
-      endAt: "2025-10-16T22:40:00.000Z",
-    },
-    {
-      startAt: "2025-10-16T10:36:00.000Z",
-      endAt: "2025-10-16T22:40:00.000Z",
-    },
-    {
-      startAt: "2025-10-16T10:36:00.000Z",
-      endAt: "2025-10-16T22:40:00.000Z",
-    },
-  ];
-
-  const recentArticles = await fetchRecentArticles();
-
-  const services = [
-    "Droit de la famille",
-    "Droit fiscal",
-    "Droit des affaires",
-    "Droit immobilier",
-    "Droit pénal",
-    "Droit des étrangers",
-  ];
+  
+  const faqs = transformFAQ(faqsPaginated)
+  const recentArticles = recentArticlesPaginated.docs;
 
   const features = [
     {
@@ -91,39 +75,7 @@ export default async function LegalGeriePage() {
     },
   ];
 
-  const faqs = [
-    {
-      question: "Comment fonctionne LEGALGERIE ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-    {
-      question: "Quels sont les domaines de droit couverts ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-    {
-      question: "Mes informations sont-elles sécurisées ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-    {
-      question: "Puis-je prendre un rappel ou rendez-vous ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-    {
-      question: "Comment puis-je contacter le support client ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-    {
-      question:
-        "Les consultations en ligne sont-elles aussi efficaces qu'en présentiel ?",
-      answer:
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos corporis consequuntur omnis assumenda dolorem, eligendi quidem iusto.",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -203,7 +155,7 @@ export default async function LegalGeriePage() {
                 Obtenez votre <span className="text-[#D4A574]">conseil</span> en
                 quelques clics seulement
               </h2>
-              <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 md:mb-8">
+              <div className="flex flex-wrap gap-x-2 gap-y-4 mb-6 md:mb-8">
                 {services.map((service, index) => {
                   return (
                     <div
@@ -374,8 +326,9 @@ export default async function LegalGeriePage() {
               <br />
               devez <span className="text-[#D4A574]">savoir</span>
             </h2>
-
-            <Faq faqs={faqs} />
+            {faqs.map((item, index) => {
+                return <Faq key={index} faqs={item.faqs} isHome />
+            })}
           </div>
         </div>
       </section>

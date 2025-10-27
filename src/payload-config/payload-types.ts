@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     consultation: Consultation;
     auxiliaires: Auxiliaire;
+    faq: Faq;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +86,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     consultation: ConsultationSelect<false> | ConsultationSelect<true>;
     auxiliaires: AuxiliairesSelect<false> | AuxiliairesSelect<true>;
+    faq: FaqSelect<false> | FaqSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -267,6 +269,19 @@ export interface Auxiliaire {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq".
+ */
+export interface Faq {
+  id: number;
+  question: string;
+  answer: string;
+  showInHomePage: boolean;
+  type: 'genQuestions' | 'services' | 'support';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -295,6 +310,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'auxiliaires';
         value: number | Auxiliaire;
+      } | null)
+    | ({
+        relationTo: 'faq';
+        value: number | Faq;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -446,6 +465,18 @@ export interface AuxiliairesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faq_select".
+ */
+export interface FaqSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  showInHomePage?: T;
+  type?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
