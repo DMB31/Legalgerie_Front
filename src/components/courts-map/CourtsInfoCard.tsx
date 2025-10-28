@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+"use client"
+import { useContext, useEffect, useState } from "react";
 import InfoItem from "./InfoItem";
 import {
   X,
@@ -7,8 +8,6 @@ import {
   MapPin,
   Calendar,
   Globe,
-  ChevronDown,
-  ChevronUp,
 } from "lucide-react";
 
 import {
@@ -22,18 +21,10 @@ import {
 } from "@/components/ui/select";
 
 import { Court, Tribunal } from "@/types";
+import { courtsContext } from "@/context/courtsContect";
 
-const CourtsInfoCard = ({
-  selectedCourt,
-  setSelectedCourt,
-  expandedTribunals,
-  setExpandedTribunals,
-}: {
-  selectedCourt: Court | null;
-  setSelectedCourt: React.Dispatch<React.SetStateAction<Court | null>>;
-  expandedTribunals: boolean;
-  setExpandedTribunals: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+const CourtsInfoCard = () => {
+  const {selectedCourt, setSelectedCourt} = useContext(courtsContext)
   const [tribunal, setTribunal] = useState<Tribunal | null>(null);
 
   useEffect(() => {

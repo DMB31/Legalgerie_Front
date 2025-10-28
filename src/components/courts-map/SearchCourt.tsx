@@ -1,19 +1,13 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { Search, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Court } from "@/types";
+import { courtsContext } from "@/context/courtsContect";
 
+const SearchCourt = () => {
+  const { courtsData, setSelectedCourt, setExpandedTribunals } = useContext(courtsContext);
 
-const SearchCourt = ({
-  courtsData,
-  setSelectedCourt,
-  setExpandedTribunals,
-}: {
-  courtsData: Court[];
-  setSelectedCourt: React.Dispatch<React.SetStateAction<Court | null>>;
-  setExpandedTribunals: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredCourts, setFilteredCourts] = useState<Court[]>([]);
 
@@ -47,7 +41,7 @@ const SearchCourt = ({
 
   return (
     <div className="relative max-w-2xl m-auto mb-8">
-      <div >
+      <div>
         <div className="relative max-w-2xl mx-auto">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
           <input
@@ -75,9 +69,9 @@ const SearchCourt = ({
                 <button
                   key={court.id}
                   onClick={() => {
-                    handleCourtSelect(court)
-                    setFilteredCourts([])
-                    setSearchQuery("")
+                    handleCourtSelect(court);
+                    setFilteredCourts([]);
+                    setSearchQuery("");
                   }}
                   className="w-full text-right px-6 py-4 hover:bg-secondary transition-colors border-b border-border last:border-b-0"
                 >

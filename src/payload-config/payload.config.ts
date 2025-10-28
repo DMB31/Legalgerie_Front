@@ -11,6 +11,7 @@ import { Users } from './collections/Users/config'
 import { Media } from './collections/Media'
 import { Auxiliaires } from './collections/Auxiliaires'
 import {FAQ} from './collections/FAQ'
+import { DemarcheAdministratives } from './collections/DemarcheAdministratives/DemarcheAdministratives'
 import Posts from './collections/Posts'
 import Categories from './collections/Categories'
 import { fr } from 'payload/i18n/fr'
@@ -33,7 +34,7 @@ export default buildConfig({
     admin: '/admin',
     api: '/api/payload',
   },
-  collections: [Users, Media, Posts, Categories, Consultation, Auxiliaires, FAQ],
+  collections: [Users, Media, Posts, Categories, Consultation, Auxiliaires, FAQ, DemarcheAdministratives],
   defaultDepth: 1,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

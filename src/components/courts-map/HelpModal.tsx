@@ -1,15 +1,23 @@
 'use client';
 
-import React from 'react';
-import { X, MousePointer, Search as SearchIcon, Map, Moon } from 'lucide-react';
+import React, {createContext, ReactNode, useContext, useState} from 'react';
+import { X, HelpCircle, MousePointer, Search as SearchIcon, Map, Moon } from 'lucide-react';
 
-interface HelpModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+type showHelpContextType = {
+  showHelp: boolean;
+  setShowHelp: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
-  if (!isOpen) return null;
+const showHelpContext = createContext<showHelpContextType>({
+  showHelp: false,
+  setShowHelp: () => {},
+});
+
+export function HelpModal() {
+
+  const {showHelp, setShowHelp} = useContext(showHelpContext)
+
+  if (!showHelp) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -17,7 +25,7 @@ export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
         <div className="bg-primary text-primary-foreground px-6 py-4 flex justify-between items-center sticky top-0">
           <h2 className="text-2xl font-bold">Guide d'utilisation</h2>
           <button
-            onClick={onClose}
+            onClick={()=> setShowHelp(false)}
             className="hover:bg-white/20 rounded-full p-2 transition-colors"
           >
             <X className="w-6 h-6" />
@@ -139,7 +147,7 @@ export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
 
         <div className="bg-secondary px-6 py-4 border-t border-border">
           <button
-            onClick={onClose}
+            onClick={() => {setShowHelp(false)}}
             className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90 transition-colors font-bold"
           >
             Compris, merci
@@ -149,3 +157,26 @@ export default function HelpModal({ isOpen, onClose }: HelpModalProps) {
     </div>
   );
 }
+
+export const HelpProvider = ({children} : {children : ReactNode}) => {
+  const [showHelp, setShowHelp] = useState(false);
+  
+  return <showHelpContext.Provider value={{ showHelp, setShowHelp }}>
+    {children}
+  </showHelpContext.Provider>
+}
+
+export const HelpButton = () => {
+  const {setShowHelp} = useContext(showHelpContext)
+
+  return (
+    <button
+      onClick={() => setShowHelp(true)}
+      className="px-4 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors flex items-center gap-2"
+      title="Aide"
+    >
+      <HelpCircle className="w-5 h-5" />
+      <span className="hidden sm:inline">Aide</span>
+    </button>
+  );
+};
